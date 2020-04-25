@@ -85,19 +85,17 @@ void Game::Start()
 			str = std::wstring(str.length(), L' ');
 			_display->ShowText(str, x, y);
 			ShowSnake();
-			/*std::thread t([&]()
+			std::thread t([&]()
 				{
 					while (true)
 					{
 						Sleep(300);
 
-						_mutex.lock();
 						ClearSnakeTail();
 						_snake->Move();
 						ShowSnake();
-						_mutex.unlock();
 					}
-				});*/
+				});
 			
 			Run();
 		}

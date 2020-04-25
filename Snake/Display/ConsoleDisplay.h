@@ -1,13 +1,16 @@
 #pragma once
 #include <iostream>
+#include <mutex>
 //#define _WIN32_WINNT 0x0500
 #include <Windows.h>
 #include "DisplayBase.h"
+
 
 template<typename T>
 class ConsoleDisplay : public DisplayBase<T>
 {
 private:
+	std::mutex _mutex;
 	HANDLE _handle;
 	COORD _cursorCoord;
 	CONSOLE_CURSOR_INFO _cursorInfo;
@@ -45,23 +48,28 @@ ConsoleDisplay<T>::~ConsoleDisplay()
 template<typename T>
 inline void ConsoleDisplay<T>::SetColor(Color background, Color foreground)
 {
+	_mutex.lock();
 	int b = static_cast<int>(background);
 	int f = static_cast<int>(foreground);
 	SetConsoleTextAttribute(_handle, f | (b << 4));
+	_mutex.unlock();
 }
 
 template<typename T>
 inline void ConsoleDisplay<T>::ShowObject(T obj, int x, int y)
 {
+	_mutex.lock();
 	_cursorCoord.X = x;
 	_cursorCoord.Y = y;
 	SetConsoleCursorPosition(_handle, _cursorCoord);
 	std::wcout << obj;
+	_mutex.unlock();
 }
 
 template<typename T>
 inline void ConsoleDisplay<T>::ShowObjects(T* objs, int len, int startX, int startY)
 {
+	_mutex.lock();
 	_cursorCoord.X = startX;
 	_cursorCoord.Y = startY;
 
@@ -71,11 +79,14 @@ inline void ConsoleDisplay<T>::ShowObjects(T* objs, int len, int startX, int sta
 		std::wcout << *(objs + i);
 		_cursorCoord.X++;
 	}
+
+	_mutex.unlock();
 }
 
 template<typename T>
 inline void ConsoleDisplay<T>::ShowObjects(T** objs, int row, int col, int startX, int startY)
 {
+	_mutex.lock();
 	_cursorCoord.X = startX;
 	_cursorCoord.Y = startY;
 
@@ -90,29 +101,35 @@ inline void ConsoleDisplay<T>::ShowObjects(T** objs, int row, int col, int start
 		_cursorCoord.Y++;
 		_cursorCoord.X = startX;
 	}
+	_mutex.unlock();
 }
 
 template<typename T>
 inline void ConsoleDisplay<T>::ShowText(wchar_t* text, int len, int startX, int startY)
 {
+	_mutex.lock();
 	_cursorCoord.X = startX;
 	_cursorCoord.Y = startY;
 	SetConsoleCursorPosition(_handle, _cursorCoord);
 	std::wcout << text;
+	_mutex.unlock();
 }
 
 template<typename T>
 inline void ConsoleDisplay<T>::ShowText(std::wstring text, int startX, int startY)
 {
+	_mutex.lock();
 	_cursorCoord.X = startX;
 	_cursorCoord.Y = startY;
 	SetConsoleCursorPosition(_handle, _cursorCoord);
 	std::wcout << text;
+	_mutex.unlock();
 }
 
 template<typename T>
 inline void ConsoleDisplay<T>::ShowTime(Time& time, int x, int y)
 {
+	_mutex.lock();
 	_cursorCoord.X = x;
 	_cursorCoord.Y = y;
 	SetConsoleCursorPosition(_handle, _cursorCoord);
@@ -120,4 +137,5 @@ inline void ConsoleDisplay<T>::ShowTime(Time& time, int x, int y)
 	if (time.Hour() > 0)
 		std::wcout << time.Hour() << L":";
 	std::wcout << time.Minute() << L":" << time.Second();
+	_mutex.unlock();
 }

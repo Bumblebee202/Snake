@@ -1,7 +1,6 @@
 #pragma once
 #include <Windows.h>
 #include <thread>
-#include <mutex>
 #include "BaseApp.h"
 #include "Header.h"
 #include "Menus/MenuBase.h"
@@ -21,7 +20,6 @@ private:
 	LevelBase* _lvl;
 	DisplayBase<wchar_t>* _display;
 	MenuBase* _menu;
-	std::mutex _mutex;
 
 	void (Game::*Show)();
 	void (Game::*Action)(int btnCode);
