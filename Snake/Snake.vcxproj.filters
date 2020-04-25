@@ -1,0 +1,156 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Snakes">
+      <UniqueIdentifier>{df5906e2-94ea-480e-921f-2e2389ed4ed6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Levels">
+      <UniqueIdentifier>{1a75b978-f4e0-42bc-aa44-0143088a5552}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Menus">
+      <UniqueIdentifier>{fc01c2d6-143f-4fbb-affe-d8a4fbaf5c45}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Displays">
+      <UniqueIdentifier>{cc4db532-a7bd-4f20-baf8-d8052bf416ff}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SQLite">
+      <UniqueIdentifier>{8f32fb3a-269e-4215-a0be-ebdd4731ef28}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Items">
+      <UniqueIdentifier>{38edb747-484f-4446-b4d1-6b3bf238b4ff}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Items\FactoryMethod">
+      <UniqueIdentifier>{4ec35b97-300e-41f9-9e97-24ca9d10d770}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Game.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="BaseApp.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Timer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Snakes\Snake.cpp">
+      <Filter>Snakes</Filter>
+    </ClCompile>
+    <ClCompile Include="Levels\LevelBase.cpp">
+      <Filter>Levels</Filter>
+    </ClCompile>
+    <ClCompile Include="Levels\FirstLevel.cpp">
+      <Filter>Levels</Filter>
+    </ClCompile>
+    <ClCompile Include="Menus\MenuBase.cpp">
+      <Filter>Menus</Filter>
+    </ClCompile>
+    <ClCompile Include="Menus\MainMenu.cpp">
+      <Filter>Menus</Filter>
+    </ClCompile>
+    <ClCompile Include="Menus\Pause.cpp">
+      <Filter>Menus</Filter>
+    </ClCompile>
+    <ClCompile Include="Items\ItemBase.cpp">
+      <Filter>Items</Filter>
+    </ClCompile>
+    <ClCompile Include="Items\Apple.cpp">
+      <Filter>Items</Filter>
+    </ClCompile>
+    <ClCompile Include="Items\Pear.cpp">
+      <Filter>Items</Filter>
+    </ClCompile>
+    <ClCompile Include="Items\Amanita.cpp">
+      <Filter>Items</Filter>
+    </ClCompile>
+    <ClCompile Include="Time.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Game.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Header.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="BaseApp.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Timer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Snakes\Snake.h">
+      <Filter>Snakes</Filter>
+    </ClInclude>
+    <ClInclude Include="Display\ConsoleDisplay.h">
+      <Filter>Displays</Filter>
+    </ClInclude>
+    <ClInclude Include="Display\DisplayBase.h">
+      <Filter>Displays</Filter>
+    </ClInclude>
+    <ClInclude Include="Levels\LevelBase.h">
+      <Filter>Levels</Filter>
+    </ClInclude>
+    <ClInclude Include="Levels\FirstLevel.h">
+      <Filter>Levels</Filter>
+    </ClInclude>
+    <ClInclude Include="Menus\MenuBase.h">
+      <Filter>Menus</Filter>
+    </ClInclude>
+    <ClInclude Include="Menus\MainMenu.h">
+      <Filter>Menus</Filter>
+    </ClInclude>
+    <ClInclude Include="Colors.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Menus\Pause.h">
+      <Filter>Menus</Filter>
+    </ClInclude>
+    <ClInclude Include="Main.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Items\ItemBase.h">
+      <Filter>Items</Filter>
+    </ClInclude>
+    <ClInclude Include="Items\Apple.h">
+      <Filter>Items</Filter>
+    </ClInclude>
+    <ClInclude Include="Items\Pear.h">
+      <Filter>Items</Filter>
+    </ClInclude>
+    <ClInclude Include="Items\Amanita.h">
+      <Filter>Items</Filter>
+    </ClInclude>
+    <ClInclude Include="Items\ItemCreator.h">
+      <Filter>Items\FactoryMethod</Filter>
+    </ClInclude>
+    <ClInclude Include="Items\AppleCreator.h">
+      <Filter>Items\FactoryMethod</Filter>
+    </ClInclude>
+    <ClInclude Include="Items\PearCreator.h">
+      <Filter>Items\FactoryMethod</Filter>
+    </ClInclude>
+    <ClInclude Include="Items\AmanitaCreator.h">
+      <Filter>Items\FactoryMethod</Filter>
+    </ClInclude>
+    <ClInclude Include="Time.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
