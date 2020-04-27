@@ -11,7 +11,7 @@ Game::Game(IDisplay<wchar_t>* display) : BaseApp()
 	_snake = new Snake();
 	_lvl = new FirstLevel();
 	_display = display;
-	_menu = new Pause(display);
+	_menu = new Pause(display, _lvl->GetCol());
 	_items = std::vector<ItemBase*>();
 
 	_display->ShowObjects(_lvl->GetField(), _lvl->GetRow(), _lvl->GetCol());

@@ -81,6 +81,15 @@
     <ClCompile Include="Time.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Items\SpeedUp.cpp">
+      <Filter>Items</Filter>
+    </ClCompile>
+    <ClCompile Include="Items\SpeedDown.cpp">
+      <Filter>Items</Filter>
+    </ClCompile>
+    <ClCompile Include="Menus\Help.cpp">
+      <Filter>Menus</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h">
@@ -151,6 +160,24 @@
     </ClInclude>
     <ClInclude Include="Time.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Items\SpeedUp.h">
+      <Filter>Items</Filter>
+    </ClInclude>
+    <ClInclude Include="Items\SpeedDown.h">
+      <Filter>Items</Filter>
+    </ClInclude>
+    <ClInclude Include="Items\SpeedUpCreator.h">
+      <Filter>Items\FactoryMethod</Filter>
+    </ClInclude>
+    <ClInclude Include="Items\SpeedDownCreaor.h">
+      <Filter>Items\FactoryMethod</Filter>
+    </ClInclude>
+    <ClInclude Include="Creators.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Menus\Help.h">
+      <Filter>Menus</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

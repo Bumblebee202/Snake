@@ -2,6 +2,7 @@
 
 MainMenu::MainMenu() : MenuBase()
 {
+	_width = 60;
 	_selectedMenuItem = 0;
 	_length = 5;
 	_menu = new std::wstring[_length];
@@ -27,24 +28,27 @@ void MainMenu::SelectMenuItem()
 	
 	if (menuItem._Equal(L"Start"))
 	{
-		Clear(60);
+		Clear();
 		if (_game == nullptr)
 			_game = new Game(_display);
 		_game->Start();
 	}
 	else if (menuItem._Equal(L"Rating"))
 	{
-		Clear(60);
+		Clear();
 		//_selectedMenu = 
 	}
 	else if (menuItem._Equal(L"Snake Color"))
 	{
-		Clear(60);
+		Clear();
 		//_selectedMenu = 
 	}
 	else if (menuItem._Equal(L"Help"))
 	{
-		Clear(60);
+		Clear();
+		Help help = Help(_display, _width);
+		help.Open();
+		Show();
 		//_selectedMenu =
 	}
 	else if (menuItem._Equal(L"Exit"))
@@ -55,7 +59,7 @@ void MainMenu::Open()
 {
 	_close = false;
 	int btnCode;
-	Show(60);
+	Show();
 	while (!_close)
 	{
 		btnCode = _getch();
@@ -67,12 +71,12 @@ void MainMenu::Open()
 		case 119:
 		case 72:
 			Up();
-			Show(60);
+			Show();
 			break;
 		case 115:
 		case 80:
 			Down();
-			Show(60);
+			Show();
 			break;
 		case 13:
 			SelectMenuItem();

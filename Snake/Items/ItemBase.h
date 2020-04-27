@@ -1,4 +1,5 @@
 #pragma once
+#include <string>
 #include "../Colors.h"
 
 class ItemBase
@@ -9,6 +10,7 @@ protected:
 	wchar_t _symbol;
 	Color _color;
 public:
+	ItemBase();
 	ItemBase(int x, int y);
 	virtual ~ItemBase();
 
@@ -20,5 +22,6 @@ public:
 	wchar_t GetSymbol() const;
 	void SetColor(Color color = Color::LightGray);
 	Color GetColor() const;
+	std::wstring virtual Description() = 0;
 };
 
