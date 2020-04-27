@@ -5,9 +5,9 @@
 class AmanitaCreator : public ItemCreator
 {
 public:
-	virtual ItemBase* Create() override
+	virtual ItemBase* Create(int x, int y) override
 	{
-		return new Amanita();
+		return new Amanita(x, y);
 	}
 };
 

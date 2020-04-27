@@ -9,7 +9,7 @@ MenuBase::MenuBase()
 	_display = nullptr;
 }
 
-MenuBase::MenuBase(DisplayBase<wchar_t>* display)
+MenuBase::MenuBase(IDisplay<wchar_t>* display)
 {
 	_close = false;
 	_display = display;
@@ -36,7 +36,7 @@ MenuBase::MenuBase(std::wstring* menu, int lenght, int selectedMenuItem)
 	_display = nullptr;
 }
 
-MenuBase::MenuBase(std::wstring* menu, int lenght, DisplayBase<wchar_t>* display)
+MenuBase::MenuBase(std::wstring* menu, int lenght, IDisplay<wchar_t>* display)
 {
 	_close = false;
 	_menu = menu;
@@ -45,7 +45,7 @@ MenuBase::MenuBase(std::wstring* menu, int lenght, DisplayBase<wchar_t>* display
 	_display = display;
 }
 
-MenuBase::MenuBase(std::wstring* menu, int lenght, int selectedMenuItem, DisplayBase<wchar_t>* display)
+MenuBase::MenuBase(std::wstring* menu, int lenght, int selectedMenuItem, IDisplay<wchar_t>* display)
 {
 	_close = false;
 	_menu = menu;

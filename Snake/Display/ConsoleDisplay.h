@@ -7,7 +7,7 @@
 
 
 template<typename T>
-class ConsoleDisplay : public DisplayBase<T>
+class ConsoleDisplay : public IDisplay<T>
 {
 private:
 	std::mutex _mutex;
@@ -28,7 +28,7 @@ public:
 };
 
 template<typename T>
-ConsoleDisplay<T>::ConsoleDisplay() : DisplayBase<T>()
+ConsoleDisplay<T>::ConsoleDisplay() : IDisplay<T>()
 {
 	_handle = GetStdHandle(STD_OUTPUT_HANDLE);
 	_cursorCoord.X = 25;

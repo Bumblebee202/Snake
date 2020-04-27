@@ -9,9 +9,13 @@ protected:
 	wchar_t _symbol;
 	Color _color;
 public:
+	ItemBase(int x, int y);
 	virtual ~ItemBase();
 
-
+	int GetX() const;
+	void SetX(int x);
+	int GetY() const;
+	void SetY(int y);
 	void SetSymbol(wchar_t symbol);
 	wchar_t GetSymbol() const;
 	void SetColor(Color color = Color::LightGray);

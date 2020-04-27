@@ -1,6 +1,8 @@
 #pragma once
 #include <atomic>
+#include <cmath>
 #include <Windows.h>
+#include <vector>
 #include <thread>
 #include "BaseApp.h"
 #include "Header.h"
@@ -11,6 +13,7 @@
 #include "Levels/LevelBase.h"
 #include "Levels/FirstLevel.h"
 #include "Display/ConsoleDisplay.h"
+#include "Creators.h"
 
 class Game : public BaseApp
 {
@@ -21,8 +24,9 @@ private:
 	Time _time;
 	Snake* _snake;
 	LevelBase* _lvl;
-	DisplayBase<wchar_t>* _display;
+	IDisplay<wchar_t>* _display;
 	MenuBase* _menu;
+	std::vector<ItemBase*> _items;
 
 	/*void (Game::*Show)();
 	void (Game::*Action)(int btnCode);*/
@@ -32,8 +36,9 @@ protected:
 
 	void ShowSnake();
 	void ClearSnakeTail();
+	ItemCreator* Creator();
 public:
-	Game(DisplayBase<wchar_t>* display);
+	Game(IDisplay<wchar_t>* display);
 	~Game();
 	virtual void Start() override;
 };

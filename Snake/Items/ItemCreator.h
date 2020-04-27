@@ -4,6 +4,6 @@
 class ItemCreator
 {
 public:
-	virtual ItemBase* Create() = 0;
+	virtual ItemBase* Create(int x, int y) = 0;
 };
 

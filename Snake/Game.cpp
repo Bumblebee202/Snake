@@ -1,8 +1,9 @@
 #include "Game.h"
 
-Game::Game(DisplayBase<wchar_t>* display) : BaseApp()
+Game::Game(IDisplay<wchar_t>* display) : BaseApp()
 {
 	//_deltaTime = 0.0f;
+	srand(0);
 	_pause = false;
 	_run = false;
 	_time = Time();
@@ -11,6 +12,7 @@ Game::Game(DisplayBase<wchar_t>* display) : BaseApp()
 	_lvl = new FirstLevel();
 	_display = display;
 	_menu = new Pause(display);
+	_items = std::vector<ItemBase*>();
 
 	_display->ShowObjects(_lvl->GetField(), _lvl->GetRow(), _lvl->GetCol());
 }
@@ -25,6 +27,7 @@ Game::~Game()
 
 void Game::Update(float deltaTime)
 {
+	_display->SetColor();
 	_time.AddMillisecond(deltaTime);
 	_display->ShowTime(_time, 65, 3);
 
@@ -87,28 +90,54 @@ void Game::Start()
 			str = std::wstring(str.length(), L' ');
 			_display->ShowText(str, x, y);
 			ShowSnake();
-			std::thread t([&]()
+			std::thread t1([&]()
 				{
 					int sleep;
 					while (true)
 					{
-						//if (_time.Millisecond() == 0.2f)
-						//	//if (_time.Millisecond() >= 0.195f && _time.Millisecond() <= 0.205f)
-						//{
-						//	ClearSnakeTail();
-						//	_snake->Move();
-						//	ShowSnake();
-						//	_time.AddMillisecond(-0.2f);
-						//}
-						if (!_pause)
+						/*if (!_pause)
 						{
 							ClearSnakeTail();
 							_snake->Move();
 							ShowSnake();
 							sleep = 1000 / _snake->GetSpeed();
 							Sleep(sleep);
-						}
+						}*/
 					}
+				});
+
+			std::thread t2([&]()
+				{
+					ItemCreator* creator = nullptr;
+					int x;
+					int y;
+					while (true)
+					{
+						if (!_pause)
+						{
+							creator = Creator();
+							x = rand() % (_lvl->GetCol() - 2) + 1;
+							y = rand() % (_lvl->GetRow() - 2) + 1;
+							for (int i = 0; i < _items.size(); i++)
+							{
+								if (_items[i]->GetX() == x && _items[i]->GetY())
+								{
+									x = rand() % (_lvl->GetCol() - 2) + 1;
+									y = rand() % (_lvl->GetRow() - 2) + 1;
+									i = 0;
+								}
+							}
+							ItemBase* item = creator->Create(x, y);
+							_items.push_back(item);
+
+							_display->SetColor(Color::Black, item->GetColor());
+							_display->ShowObject(item->GetSymbol(), x, y);
+
+							Sleep(100);
+						}
+
+					}
+
 				});
 
 			Run();
@@ -134,4 +163,22 @@ void Game::ClearSnakeTail()
 	_display->SetColor(Color::Black, _snake->GetColor());
 	Element* el = _snake->GetTail();
 	_display->ShowObject(L' ', el->X, el->Y);
+}
+
+ItemCreator* Game::Creator()
+{
+	int value = rand() % 5;
+
+	if (value == 0)
+		return new AppleCreator();
+	else if (value == 1)
+		return new AmanitaCreator();
+	else if (value == 2)
+		return new PearCreator();
+	else if (value == 3)
+		return new SpeedDownCreaor();
+	else if (value == 4)
+		return new SpeedUpCreator();
+
+	return nullptr;
 }

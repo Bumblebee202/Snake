@@ -11,16 +11,16 @@ protected:
 	std::wstring* _menu;
 	int _length;
 	int _selectedMenuItem;
-	DisplayBase<wchar_t>* _display;
+	IDisplay<wchar_t>* _display;
 
 	void virtual GenerateMenu() = 0;
 public:
 	MenuBase();
-	MenuBase(DisplayBase<wchar_t>* display);
+	MenuBase(IDisplay<wchar_t>* display);
 	MenuBase(std::wstring* menu, int lenght);
 	MenuBase(std::wstring* menu, int lenght, int selectedMenuItem);
-	MenuBase(std::wstring* menu, int lenght, DisplayBase<wchar_t>* display);
-	MenuBase(std::wstring* menu, int lenght, int selectedMenuItem, DisplayBase<wchar_t>* display);
+	MenuBase(std::wstring* menu, int lenght, IDisplay<wchar_t>* display);
+	MenuBase(std::wstring* menu, int lenght, int selectedMenuItem, IDisplay<wchar_t>* display);
 	virtual ~MenuBase();
 
 	std::wstring* GetMenu() const;
