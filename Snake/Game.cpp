@@ -2,6 +2,8 @@
 
 Game::Game(DisplayBase<wchar_t>* display) : BaseApp()
 {
+	//_deltaTime = 0.0f;
+	_pause = false;
 	_run = false;
 	_time = Time();
 	_score = 0;
@@ -58,8 +60,10 @@ void Game::KeyPressed(int btnCode)
 		dir = _snake->GetDirection() != Direction::Up ? Direction::Down : dir;
 		break;
 	case 27:
+		_pause = true;
 		_menu->Open();
 		ShowSnake();
+		_pause = false;
 		break;
 	}
 
@@ -71,8 +75,6 @@ void Game::Start()
 {
 	do
 	{
-		//_display->ShowTime(_time, 65, 3);
-
 		std::wstring str = L"Press space to continue";
 		int x = (_lvl->GetCol() - str.length()) / 2;
 		int y = _lvl->GetRow() / 3;
@@ -87,16 +89,28 @@ void Game::Start()
 			ShowSnake();
 			std::thread t([&]()
 				{
+					int sleep;
 					while (true)
 					{
-						Sleep(300);
-
-						ClearSnakeTail();
-						_snake->Move();
-						ShowSnake();
+						//if (_time.Millisecond() == 0.2f)
+						//	//if (_time.Millisecond() >= 0.195f && _time.Millisecond() <= 0.205f)
+						//{
+						//	ClearSnakeTail();
+						//	_snake->Move();
+						//	ShowSnake();
+						//	_time.AddMillisecond(-0.2f);
+						//}
+						if (!_pause)
+						{
+							ClearSnakeTail();
+							_snake->Move();
+							ShowSnake();
+							sleep = 1000 / _snake->GetSpeed();
+							Sleep(sleep);
+						}
 					}
 				});
-			
+
 			Run();
 		}
 

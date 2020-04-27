@@ -2,7 +2,7 @@
 
 Snake::Snake()
 {
-	_speed = 10;
+	_speed = 5;
 	_color = Color::LightGray;
 
 	_head = new Element();

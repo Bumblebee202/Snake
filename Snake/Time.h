@@ -12,7 +12,7 @@ public:
 	Time();
 	Time(int hour, int minute, int second, int millisecond);
 
-	int Millisecond() const;
+	float Millisecond() const;
 	int Second() const;
 	int Minute() const;
 	int Hour() const;

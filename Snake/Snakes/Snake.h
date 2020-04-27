@@ -4,8 +4,8 @@
 class Snake
 {
 private:
-	int _speed;
 	int _length;
+	int _speed;
 	Color _color;
 	Element* _head;
 	Element* _tail;

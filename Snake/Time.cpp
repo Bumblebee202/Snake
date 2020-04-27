@@ -17,9 +17,9 @@ Time::Time(int hour, int minute, int second, int millisecond)
 	_hour = hour;
 }
 
-int Time::Millisecond() const
+float Time::Millisecond() const
 {
-	return static_cast<int>(_millisecond);
+	return _millisecond;
 }
 
 int Time::Second() const

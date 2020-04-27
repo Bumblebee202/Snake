@@ -1,4 +1,5 @@
 #pragma once
+#include <atomic>
 #include <Windows.h>
 #include <thread>
 #include "BaseApp.h"
@@ -14,6 +15,8 @@
 class Game : public BaseApp
 {
 private:
+	//std::atomic<float> _deltaTime;
+	bool _pause;
 	int _score;
 	Time _time;
 	Snake* _snake;
@@ -21,8 +24,8 @@ private:
 	DisplayBase<wchar_t>* _display;
 	MenuBase* _menu;
 
-	void (Game::*Show)();
-	void (Game::*Action)(int btnCode);
+	/*void (Game::*Show)();
+	void (Game::*Action)(int btnCode);*/
 protected:
 	virtual void Update(float deltaTime) override;
 	virtual void KeyPressed(int btnCode) override;

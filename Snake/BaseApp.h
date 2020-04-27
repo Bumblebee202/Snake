@@ -5,12 +5,11 @@
 
 class BaseApp
 {
-protected:
-	bool _run;
-	int _sum;
-	int _fps;
+private:
 	int _deltaTime;
 	Timer _timer;
+protected:
+	bool _run;
 
 	virtual void Update(float deltaTime) = 0;
 	virtual void KeyPressed(int btnCode) = 0;
