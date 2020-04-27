@@ -4,6 +4,6 @@
 class Amanita :	public ItemBase
 {
 public:
-	Amanita();
+	Amanita(int x, int y);
 };
 

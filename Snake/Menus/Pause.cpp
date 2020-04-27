@@ -1,6 +1,6 @@
 #include "Pause.h"
 
-Pause::Pause(DisplayBase<wchar_t>* display) : MenuBase(display)
+Pause::Pause(IDisplay<wchar_t>* display) : MenuBase(display)
 {
 	_selectedMenuItem = 0;
 	_length = 2;

@@ -7,7 +7,7 @@ protected:
 	virtual void GenerateMenu() override;
 
 public:
-	Pause(DisplayBase<wchar_t>* display);
+	Pause(IDisplay<wchar_t>* display);
 
 	void virtual SelectMenuItem() override;
 };

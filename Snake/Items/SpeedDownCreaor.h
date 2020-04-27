@@ -1,13 +1,13 @@
 #pragma once
 #include "ItemCreator.h"
-#include "Pear.h"
+#include "SpeedDown.h"
 
-class PearCreator : public ItemCreator
+class SpeedDownCreaor :	public ItemCreator
 {
 public:
 	virtual ItemBase* Create(int x, int y) override
 	{
-		return new Pear(x, y);
+		return new SpeedDown(x, y);
 	}
 };
 

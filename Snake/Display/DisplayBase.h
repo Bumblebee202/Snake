@@ -3,7 +3,7 @@
 #include "../Time.h"
 
 template <typename T>
-class DisplayBase
+class IDisplay
 {
 public:
 	virtual void SetColor(Color background = Color::Black, Color foreground = Color::LightGray) = 0;
