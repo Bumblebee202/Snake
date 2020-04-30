@@ -25,9 +25,12 @@
     <ClCompile Include="Items\Apple.cpp" />
     <ClCompile Include="Items\ItemBase.cpp" />
     <ClCompile Include="Items\Pear.cpp" />
+    <ClCompile Include="Items\SpeedDown.cpp" />
+    <ClCompile Include="Items\SpeedUp.cpp" />
     <ClCompile Include="Levels\FirstLevel.cpp" />
     <ClCompile Include="Levels\LevelBase.cpp" />
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="Menus\Help.cpp" />
     <ClCompile Include="Menus\MainMenu.cpp" />
     <ClCompile Include="Menus\MenuBase.cpp" />
     <ClCompile Include="Menus\Pause.cpp" />
@@ -38,6 +41,7 @@
   <ItemGroup>
     <ClInclude Include="BaseApp.h" />
     <ClInclude Include="Colors.h" />
+    <ClInclude Include="Creators.h" />
     <ClInclude Include="Display\ConsoleDisplay.h" />
     <ClInclude Include="Display\DisplayBase.h" />
     <ClInclude Include="Game.h" />
@@ -50,9 +54,14 @@
     <ClInclude Include="Items\ItemCreator.h" />
     <ClInclude Include="Items\Pear.h" />
     <ClInclude Include="Items\PearCreator.h" />
+    <ClInclude Include="Items\SpeedDown.h" />
+    <ClInclude Include="Items\SpeedDownCreaor.h" />
+    <ClInclude Include="Items\SpeedUp.h" />
+    <ClInclude Include="Items\SpeedUpCreator.h" />
     <ClInclude Include="Levels\FirstLevel.h" />
     <ClInclude Include="Levels\LevelBase.h" />
     <ClInclude Include="Main.h" />
+    <ClInclude Include="Menus\Help.h" />
     <ClInclude Include="Menus\MainMenu.h" />
     <ClInclude Include="Menus\MenuBase.h" />
     <ClInclude Include="Menus\Pause.h" />

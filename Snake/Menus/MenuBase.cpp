@@ -7,47 +7,53 @@ MenuBase::MenuBase()
 	_length = 0;
 	_menu = nullptr;
 	_display = nullptr;
+	_width = -1;
 }
 
-MenuBase::MenuBase(IDisplay<wchar_t>* display)
+MenuBase::MenuBase(IDisplay<wchar_t>* display, int width)
 {
 	_close = false;
+	_width = width;
 	_display = display;
 	_selectedMenuItem = -1;
 	_length = 0;
 	_menu = nullptr;
 }
 
-MenuBase::MenuBase(std::wstring* menu, int lenght)
+MenuBase::MenuBase(std::wstring* menu, int lenght, int width)
 {
 	_close = false;
+	_width = width;
 	_menu = menu;
 	_length = lenght;
 	_selectedMenuItem = 0;
 	_display = nullptr;
 }
 
-MenuBase::MenuBase(std::wstring* menu, int lenght, int selectedMenuItem)
+MenuBase::MenuBase(std::wstring* menu, int lenght, int selectedMenuItem, int width)
 {
 	_close = false;
+	_width = width;
 	_menu = menu;
 	_length = lenght;
 	_selectedMenuItem = selectedMenuItem;
 	_display = nullptr;
 }
 
-MenuBase::MenuBase(std::wstring* menu, int lenght, IDisplay<wchar_t>* display)
+MenuBase::MenuBase(std::wstring* menu, int lenght, IDisplay<wchar_t>* display, int width)
 {
 	_close = false;
+	_width = width;
 	_menu = menu;
 	_length = lenght;
 	_selectedMenuItem = 0;
 	_display = display;
 }
 
-MenuBase::MenuBase(std::wstring* menu, int lenght, int selectedMenuItem, IDisplay<wchar_t>* display)
+MenuBase::MenuBase(std::wstring* menu, int lenght, int selectedMenuItem, IDisplay<wchar_t>* display, int width)
 {
 	_close = false;
+	_width = width;
 	_menu = menu;
 	_length = lenght;
 	_selectedMenuItem = selectedMenuItem;
@@ -88,6 +94,11 @@ void MenuBase::SetSelectedMenuItem(int value)
 		_selectedMenuItem = value;
 }
 
+void MenuBase::SetRowWidth(int value)
+{
+	_width = value;
+}
+
 void MenuBase::Up()
 {
 	if (_selectedMenuItem > 0)
@@ -104,7 +115,7 @@ void MenuBase::Open()
 {
 	_close = false;
 	int btnCode;
-	Show(60);
+	Show();
 	while (!_close)
 	{
 		btnCode = _getch();
@@ -116,12 +127,12 @@ void MenuBase::Open()
 		case 119:
 		case 72:
 			Up();
-			Show(60);
+			Show();
 			break;
 		case 115:
 		case 80:
 			Down();
-			Show(60);
+			Show();
 			break;
 		case 13:
 			SelectMenuItem();
@@ -129,13 +140,13 @@ void MenuBase::Open()
 		case 27: //esc
 			_selectedMenuItem = 0;
 			_close = true;
-			Clear(60);
+			Clear();
 			break;
 		}
 	}
 }
 
-void MenuBase::Show(int width)
+void MenuBase::Show()
 {
 	for (int i = 0; i < _length; i++)
 	{
@@ -145,19 +156,19 @@ void MenuBase::Show(int width)
 			_display->SetColor();
 
 		std::wstring menuItem = *(_menu + i);
-		int x = (width - menuItem.length()) / 2;
+		int x = (_width - menuItem.length()) / 2;
 		_display->ShowText(menuItem, x, 10 + i);
 	}
 }
 
-void MenuBase::Clear(int width)
+void MenuBase::Clear()
 {
 	_display->SetColor();
 	for (int i = 0; i < _length; i++)
 	{
 		std::wstring menuItem = *(_menu + i);
 		std::wstring empty(menuItem.length(), L' ');
-		int x = (width - menuItem.length()) / 2;
+		int x = (_width - menuItem.length()) / 2;
 		_display->ShowText(empty, x, 10 + i);
 	}
 }

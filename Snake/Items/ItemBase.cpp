@@ -1,5 +1,11 @@
 #include "ItemBase.h"
 
+
+
+ItemBase::ItemBase()
+{
+}
+
 ItemBase::ItemBase(int x, int y)
 {
 	_x = x;

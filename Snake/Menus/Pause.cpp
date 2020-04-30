@@ -1,6 +1,6 @@
 #include "Pause.h"
 
-Pause::Pause(IDisplay<wchar_t>* display) : MenuBase(display)
+Pause::Pause(IDisplay<wchar_t>* display, int rowWidth) : MenuBase(display, rowWidth)
 {
 	_selectedMenuItem = 0;
 	_length = 2;
@@ -14,7 +14,7 @@ void Pause::SelectMenuItem()
 
 	if (menuItem._Equal(L"Continue"))
 	{
-		Clear(60);
+		Clear();
 		_selectedMenuItem = 0;
 		_close = true;
 	}
