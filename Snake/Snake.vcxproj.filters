@@ -110,9 +110,6 @@
     <ClInclude Include="Display\ConsoleDisplay.h">
       <Filter>Displays</Filter>
     </ClInclude>
-    <ClInclude Include="Display\DisplayBase.h">
-      <Filter>Displays</Filter>
-    </ClInclude>
     <ClInclude Include="Levels\LevelBase.h">
       <Filter>Levels</Filter>
     </ClInclude>
@@ -178,6 +175,9 @@
     </ClInclude>
     <ClInclude Include="Menus\Help.h">
       <Filter>Menus</Filter>
+    </ClInclude>
+    <ClInclude Include="Display\IDisplay.h">
+      <Filter>Displays</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

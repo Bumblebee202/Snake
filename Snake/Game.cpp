@@ -14,7 +14,8 @@ Game::Game(IDisplay<wchar_t>* display) : BaseApp()
 	_menu = new Pause(display, _lvl->GetCol());
 	_items = std::vector<ItemBase*>();
 
-	_display->ShowObjects(_lvl->GetField(), _lvl->GetRow(), _lvl->GetCol());
+	/*_display->SetWidnowSize(_lvl->GetCol(), _lvl->GetRow());
+	_display->ShowObjects(_lvl->GetField(), _lvl->GetRow(), _lvl->GetCol());*/
 }
 
 Game::~Game()
@@ -78,6 +79,8 @@ void Game::Start()
 {
 	do
 	{
+		_display->SetWidnowSize(_lvl->GetCol() + 20, _lvl->GetRow());
+		_display->ShowObjects(_lvl->GetField(), _lvl->GetRow(), _lvl->GetCol());
 		std::wstring str = L"Press space to continue";
 		int x = (_lvl->GetCol() - str.length()) / 2;
 		int y = _lvl->GetRow() / 3;

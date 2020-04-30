@@ -6,6 +6,7 @@
 
 int main()
 {
+	system("mode con: lines=30 cols=60");
 	_setmode(_fileno(stdout), _O_U16TEXT);
 	_setmode(_fileno(stdin), _O_U16TEXT);
 	_setmode(_fileno(stderr), _O_U16TEXT);

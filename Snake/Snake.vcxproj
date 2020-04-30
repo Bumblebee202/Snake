@@ -43,7 +43,7 @@
     <ClInclude Include="Colors.h" />
     <ClInclude Include="Creators.h" />
     <ClInclude Include="Display\ConsoleDisplay.h" />
-    <ClInclude Include="Display\DisplayBase.h" />
+    <ClInclude Include="Display\IDisplay.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="Header.h" />
     <ClInclude Include="Items\Amanita.h" />

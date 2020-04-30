@@ -18,8 +18,8 @@ Help::~Help()
 void Help::GenerateMenu()
 {
 	_items.push_back(new Apple());
-	_items.push_back(new Amanita());
 	_items.push_back(new Pear());
+	_items.push_back(new Amanita());
 	_items.push_back(new SpeedDown());
 	_items.push_back(new SpeedUp());
 }

@@ -3,8 +3,7 @@
 #include <mutex>
 //#define _WIN32_WINNT 0x0500
 #include <Windows.h>
-#include "DisplayBase.h"
-
+#include "IDisplay.h"
 
 template<typename T>
 class ConsoleDisplay : public IDisplay<T>
@@ -18,6 +17,7 @@ public:
 	ConsoleDisplay();
 	~ConsoleDisplay();
 
+	void SetWidnowSize(int x, int y) override;
 	void SetColor(Color background = Color::Black, Color foreground = Color::DarkGray) override;
 	void ShowObject(T obj, int x = 0, int y = 0) override;
 	void ShowObjects(T* objs, int len, int startX = 0, int startY = 0) override;
@@ -43,6 +43,20 @@ template<typename T>
 ConsoleDisplay<T>::~ConsoleDisplay()
 {
 	delete _handle;
+}
+
+
+
+template<typename T>
+inline void ConsoleDisplay<T>::SetWidnowSize(int x, int y)
+{
+	_mutex.lock();
+	std::string str = std::string("mode con: lines=")
+						.append(std::to_string(y))
+						.append(" cols=")
+						.append(std::to_string(x));
+	system(str.c_str());
+	_mutex.unlock();
 }
 
 template<typename T>
