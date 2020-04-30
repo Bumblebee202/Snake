@@ -116,28 +116,41 @@ void Game::Start()
 					int y;
 					while (true)
 					{
-						if (!_pause)
+						try
 						{
-							creator = Creator();
-							x = rand() % (_lvl->GetCol() - 2) + 1;
-							y = rand() % (_lvl->GetRow() - 2) + 1;
-							for (int i = 0; i < _items.size(); i++)
+							if (!_pause)
 							{
-								if (_items[i]->GetX() == x && _items[i]->GetY())
+								creator = Creator();
+								x = rand() % (_lvl->GetCol() - 2) + 1;
+								y = rand() % (_lvl->GetRow() - 2) + 1;
+								for (int i = 0; i < _items.size(); i++)
 								{
-									x = rand() % (_lvl->GetCol() - 2) + 1;
-									y = rand() % (_lvl->GetRow() - 2) + 1;
-									i = 0;
+									if (_items[i]->GetX() == x && _items[i]->GetY() == y)
+									{
+										x = rand() % (_lvl->GetCol() - 2) + 1;
+										y = rand() % (_lvl->GetRow() - 2) + 1;
+										i = 0;
+									}
 								}
+								ItemBase* item = creator->Create(x, y);
+								_items.push_back(item);
+
+								_lvl->SetSymbol(item->GetSymbol(), item->GetX(), item->GetY());
+
+								_display->SetColor(Color::Black, item->GetColor());
+								_display->ShowObject(item->GetSymbol(), x, y);
+
+								std::wstring str = L"Count: " + std::to_wstring(_items.size());
+								_display->ShowText(str, 61, 10);
+								Sleep(100);
 							}
-							ItemBase* item = creator->Create(x, y);
-							_items.push_back(item);
-
-							_display->SetColor(Color::Black, item->GetColor());
-							_display->ShowObject(item->GetSymbol(), x, y);
-
-							Sleep(100);
 						}
+						catch (const std::exception&)
+						{
+							std::wstring str = L"Error";
+							_display->ShowText(str, 61, 10);
+						}
+						
 
 					}
 
