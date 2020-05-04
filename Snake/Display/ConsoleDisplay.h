@@ -104,12 +104,24 @@ inline void ConsoleDisplay<T>::ShowObjects(T** objs, int row, int col, int start
 	_cursorCoord.X = startX;
 	_cursorCoord.Y = startY;
 
-	for (int i = 0; i < row; i++)
+	/*for (int i = 0; i < row; i++)
 	{
 		for (int j = 0; j < col; j++)
 		{
 			SetConsoleCursorPosition(_handle, _cursorCoord);
 			std::wcout << *(*(objs + i) + j);
+			_cursorCoord.Y++;
+		}
+		_cursorCoord.X++;
+		_cursorCoord.Y = startY;
+	}*/
+
+	for (int i = 0; i < col; i++)
+	{
+		for (int j = 0; j < row; j++)
+		{
+			SetConsoleCursorPosition(_handle, _cursorCoord);
+			std::wcout << *(*(objs + j) + i);
 			_cursorCoord.X++;
 		}
 		_cursorCoord.Y++;

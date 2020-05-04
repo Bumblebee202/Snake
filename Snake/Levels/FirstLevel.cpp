@@ -2,8 +2,8 @@
 
 FirstLevel::FirstLevel() : LevelBase()
 {
-	_row = 30;
-	_col = 60;
+	_row = 60;
+	_col = 30;
 	_field = new wchar_t* [_row];
 
 	for (int i = 0; i < _row; i++)
