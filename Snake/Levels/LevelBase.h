@@ -19,6 +19,7 @@ public:
 	int GetRow() const;
 	int GetCol() const;
 	void SetSymbol(wchar_t symbol, int x, int y);
-	//void SetField(wchar_t** field, int row, int col);
+	wchar_t GetSymbol(int x, int y);
 	wchar_t** GetField() const;
+	bool IsRoad(int x, int y);
 };
