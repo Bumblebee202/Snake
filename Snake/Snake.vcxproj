@@ -66,6 +66,7 @@
     <ClInclude Include="Menus\MainMenu.h" />
     <ClInclude Include="Menus\MenuBase.h" />
     <ClInclude Include="Menus\Pause.h" />
+    <ClInclude Include="Other\ThreadSafeVector.h" />
     <ClInclude Include="Snakes\Snake.h" />
     <ClInclude Include="Time.h" />
     <ClInclude Include="Timer.h" />

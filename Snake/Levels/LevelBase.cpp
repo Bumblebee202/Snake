@@ -41,19 +41,13 @@ int LevelBase::GetCol() const
 
 void LevelBase::SetSymbol(wchar_t symbol, int x, int y)
 {
+	*(*(_field + x) + y) = symbol;
 }
 
-//void LevelBase::SetField(wchar_t** field, int row, int col)
-//{
-//	Delete();
-//
-//	_row = row;
-//	_col = col;
-//	
-//	_field = new wchar_t* [_row];
-//	for (int i = 0; i < _col; i++)
-//		*(_field + i) = new wchar_t[_col];
-//}
+wchar_t LevelBase::GetSymbol(int x, int y)
+{
+	return *(*(_field + x) + y);
+}
 
 wchar_t** LevelBase::GetField() const
 {

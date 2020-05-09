@@ -12,7 +12,6 @@ Game::Game(IDisplay<wchar_t>* display) : BaseApp()
 	_lvl = new FirstLevel();
 	_display = display;
 	_menu = new Pause(display, _lvl->GetCol());
-	_items = std::vector<ItemBase*>();
 
 	/*_display->SetWidnowSize(_lvl->GetCol(), _lvl->GetRow());
 	_display->ShowObjects(_lvl->GetField(), _lvl->GetRow(), _lvl->GetCol());*/
@@ -79,11 +78,11 @@ void Game::Start()
 {
 	do
 	{
-		_display->SetWidnowSize(_lvl->GetCol() + 20, _lvl->GetRow());
+		_display->SetWidnowSize(_lvl->GetRow() + 20, _lvl->GetCol());
 		_display->ShowObjects(_lvl->GetField(), _lvl->GetRow(), _lvl->GetCol());
 		std::wstring str = L"Press space to continue";
-		int x = (_lvl->GetCol() - str.length()) / 2;
-		int y = _lvl->GetRow() / 3;
+		int x = (_lvl->GetRow() - str.length()) / 2;
+		int y = _lvl->GetCol() / 3;
 		_display->ShowText(str, x, y);
 
 		int sp = _getch();
@@ -92,8 +91,7 @@ void Game::Start()
 			_display->ShowText(_lvl->GetLevel(), 65, 1);
 			str = std::wstring(str.length(), L' ');
 			_display->ShowText(str, x, y);
-			_display->ShowText(L"Score: ", 65, 5);
-			_display->ShowNumber(_score, 72, 5);
+			ShowScore();
 			ShowSnake();
 			SnakePart* head = _snake->GetHead();
 			std::thread t1([&]()
@@ -108,13 +106,14 @@ void Game::Start()
 							
 							if (!_lvl->IsRoad(head->X, head->Y))
 							{
-								for (int i = 0; i < _items.size(); i++)
+								for (int i = 0; i < _items.Count(); i++)
 								{
 									if (_items[i]->GetX() == head->X && _items[i]->GetY() == head->Y)
 									{
 										IEdible* item = _items[i];
 										_score += _snake->Eat(item);
-										_items.erase(_items.begin() + i);
+										ShowScore();
+										_items.RemoveAt(i);
 										delete[] item;
 										break;
 									}
@@ -134,44 +133,36 @@ void Game::Start()
 					int y;
 					while (true)
 					{
-						try
+						if (!_pause)
 						{
-							if (!_pause)
+							creator = Creator();
+							x = rand() % (_lvl->GetRow() - 2) + 1;
+							y = rand() % (_lvl->GetCol() - 2) + 1;
+							while (true)
 							{
-								creator = Creator();
-								x = rand() % (_lvl->GetCol() - 2) + 1;
-								y = rand() % (_lvl->GetRow() - 2) + 1;
-								for (int i = 0; i < _items.size(); i++)
+								if (!_lvl->IsRoad(x, y))
 								{
-									if (_items[i]->GetX() == x && _items[i]->GetY() == y)
-									{
-										x = rand() % (_lvl->GetCol() - 2) + 1;
-										y = rand() % (_lvl->GetRow() - 2) + 1;
-										i = 0;
-									}
+									x = rand() % (_lvl->GetRow() - 2) + 1;
+									y = rand() % (_lvl->GetCol() - 2) + 1;
+									continue;
 								}
-								ItemBase* item = creator->Create(x, y);
-								_items.push_back(item);
-
-								_lvl->SetSymbol(item->GetSymbol(), item->GetX(), item->GetY());
-
-								_display->SetColor(Color::Black, item->GetColor());
-								_display->ShowObject(item->GetSymbol(), x, y);
-
-								std::wstring str = L"Count: " + std::to_wstring(_items.size());
-								_display->ShowText(str, 61, 10);
-								Sleep(3000);
+								break;
 							}
+
+							ItemBase* item = creator->Create(x, y);
+							_items.Add(item);
+
+							_lvl->SetSymbol(item->GetSymbol(), item->GetX(), item->GetY());
+
+							_display->SetColor(Color::Black, item->GetColor());
+							_display->ShowObject(item->GetSymbol(), x, y);
+
+							Sleep(3000);
 						}
-						catch (const std::exception&)
-						{
-							std::wstring str = L"Error";
-							_display->ShowText(str, 61, 10);
-						}
-						
+
 
 					}
-
+					delete creator;
 				});
 
 			Run();
@@ -190,6 +181,12 @@ void Game::ShowSnake()
 		_display->ShowObject(el->Symbol, el->X, el->Y);
 		el = el->Next;
 	}
+}
+
+void Game::ShowScore()
+{
+	_display->ShowText(L"Score: ", 65, 5);
+	_display->ShowNumber(_score, 72, 5);
 }
 
 void Game::ClearSnakeTail()

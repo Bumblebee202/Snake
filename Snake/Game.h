@@ -2,8 +2,8 @@
 #include <atomic>
 #include <cmath>
 #include <Windows.h>
-#include <vector>
 #include <thread>
+#include "Other/ThreadSafeVector.h"
 #include "BaseApp.h"
 #include "Header.h"
 #include "Menus/MenuBase.h"
@@ -26,7 +26,7 @@ private:
 	LevelBase* _lvl;
 	IDisplay<wchar_t>* _display;
 	MenuBase* _menu;
-	std::vector<ItemBase*> _items;
+	ThreadSafeVector<ItemBase*> _items;
 
 	/*void (Game::*Show)();
 	void (Game::*Action)(int btnCode);*/
@@ -35,6 +35,7 @@ protected:
 	virtual void KeyPressed(int btnCode) override;
 
 	void ShowSnake();
+	void ShowScore();
 	void ClearSnakeTail();
 	ItemCreator* Creator();
 public:
