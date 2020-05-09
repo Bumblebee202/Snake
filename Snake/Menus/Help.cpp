@@ -11,8 +11,8 @@ Help::Help(IDisplay<wchar_t>* display, int width) : MenuBase(display, width)
 
 Help::~Help()
 {
-	for (auto it = _items.begin(); it != _items.end(); ++it)
-		delete* it;
+	for (auto item : _items)
+		delete item;
 }
 
 void Help::GenerateMenu()

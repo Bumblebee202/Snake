@@ -23,6 +23,11 @@ Game::~Game()
 	delete _lvl;
 	delete _display;
 	delete _menu;
+
+	for (int i = 0; i < _items.Count(); i++)
+		delete _items[i];
+
+	_items.Clear();
 }
 
 void Game::Update(float deltaTime)
