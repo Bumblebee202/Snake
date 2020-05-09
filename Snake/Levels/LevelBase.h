@@ -21,4 +21,5 @@ public:
 	void SetSymbol(wchar_t symbol, int x, int y);
 	//void SetField(wchar_t** field, int row, int col);
 	wchar_t** GetField() const;
+	bool IsRoad(int x, int y);
 };

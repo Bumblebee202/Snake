@@ -92,20 +92,38 @@ void Game::Start()
 			_display->ShowText(_lvl->GetLevel(), 65, 1);
 			str = std::wstring(str.length(), L' ');
 			_display->ShowText(str, x, y);
+			_display->ShowText(L"Score: ", 65, 5);
+			_display->ShowNumber(_score, 72, 5);
 			ShowSnake();
+			SnakePart* head = _snake->GetHead();
 			std::thread t1([&]()
 				{
 					int sleep;
 					while (true)
 					{
-						/*if (!_pause)
+						if (!_pause)
 						{
 							ClearSnakeTail();
 							_snake->Move();
+							
+							if (!_lvl->IsRoad(head->X, head->Y))
+							{
+								for (int i = 0; i < _items.size(); i++)
+								{
+									if (_items[i]->GetX() == head->X && _items[i]->GetY() == head->Y)
+									{
+										IEdible* item = _items[i];
+										_score += _snake->Eat(item);
+										_items.erase(_items.begin() + i);
+										delete[] item;
+										break;
+									}
+								}
+							}
 							ShowSnake();
 							sleep = 1000 / _snake->GetSpeed();
 							Sleep(sleep);
-						}*/
+						}
 					}
 				});
 
@@ -142,7 +160,7 @@ void Game::Start()
 
 								std::wstring str = L"Count: " + std::to_wstring(_items.size());
 								_display->ShowText(str, 61, 10);
-								Sleep(100);
+								Sleep(3000);
 							}
 						}
 						catch (const std::exception&)
@@ -166,7 +184,7 @@ void Game::Start()
 void Game::ShowSnake()
 {
 	_display->SetColor(Color::Black, _snake->GetColor());
-	Element* el = _snake->GetHead();
+	SnakePart* el = _snake->GetHead();
 	while (el != nullptr)
 	{
 		_display->ShowObject(el->Symbol, el->X, el->Y);
@@ -177,13 +195,18 @@ void Game::ShowSnake()
 void Game::ClearSnakeTail()
 {
 	_display->SetColor(Color::Black, _snake->GetColor());
-	Element* el = _snake->GetTail();
+	SnakePart* el = _snake->GetTail();
 	_display->ShowObject(L' ', el->X, el->Y);
 }
 
 ItemCreator* Game::Creator()
 {
-	int value = rand() % 5;
+	int value = rand() % 2;
+	if (value == 0)
+		return new AppleCreator();
+	else if (value == 1)
+		return new PearCreator();
+	/*int value = rand() % 5;
 
 	if (value == 0)
 		return new AppleCreator();
@@ -194,7 +217,7 @@ ItemCreator* Game::Creator()
 	else if (value == 3)
 		return new SpeedDownCreaor();
 	else if (value == 4)
-		return new SpeedUpCreator();
+		return new SpeedUpCreator();*/
 
 	return nullptr;
 }

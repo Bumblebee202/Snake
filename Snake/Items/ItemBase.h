@@ -1,12 +1,14 @@
 #pragma once
 #include <string>
 #include "../Colors.h"
+#include "IEdible.h"
 
-class ItemBase
+class ItemBase : public IEdible
 {
 protected:
 	int _x;
 	int _y;
+	int _score;
 	wchar_t _symbol;
 	Color _color;
 public:
@@ -23,5 +25,7 @@ public:
 	void SetColor(Color color = Color::LightGray);
 	Color GetColor() const;
 	std::wstring virtual Description() = 0;
+	int GetScore() override;
+	//void virtual Effect(Snake* snake) override = 0;
 };
 

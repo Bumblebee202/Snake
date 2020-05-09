@@ -59,3 +59,8 @@ wchar_t** LevelBase::GetField() const
 {
 	return _field;
 }
+
+bool LevelBase::IsRoad(int x, int y)
+{
+	return *(*(_field + x) + y) == L' ' ? true : false;
+}

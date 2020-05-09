@@ -50,6 +50,7 @@
     <ClInclude Include="Items\AmanitaCreator.h" />
     <ClInclude Include="Items\Apple.h" />
     <ClInclude Include="Items\AppleCreator.h" />
+    <ClInclude Include="Items\IEdible.h" />
     <ClInclude Include="Items\ItemBase.h" />
     <ClInclude Include="Items\ItemCreator.h" />
     <ClInclude Include="Items\Pear.h" />

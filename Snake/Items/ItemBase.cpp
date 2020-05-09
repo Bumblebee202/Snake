@@ -2,11 +2,11 @@
 
 
 
-ItemBase::ItemBase()
+ItemBase::ItemBase() : IEdible()
 {
 }
 
-ItemBase::ItemBase(int x, int y)
+ItemBase::ItemBase(int x, int y) : IEdible()
 {
 	_x = x;
 	_y = y;
@@ -56,4 +56,9 @@ void ItemBase::SetColor(Color color)
 Color ItemBase::GetColor() const
 {
 	return _color;
+}
+
+int ItemBase::GetScore()
+{
+	return _score;
 }

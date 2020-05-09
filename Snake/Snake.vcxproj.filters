@@ -179,5 +179,8 @@
     <ClInclude Include="Display\IDisplay.h">
       <Filter>Displays</Filter>
     </ClInclude>
+    <ClInclude Include="Items\IEdible.h">
+      <Filter>Items</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
