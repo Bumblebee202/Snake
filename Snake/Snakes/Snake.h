@@ -1,5 +1,6 @@
 #pragma once
 #include "../Header.h"
+#include "../Items/ItemBase.h"
 
 class Snake
 {
@@ -7,8 +8,8 @@ private:
 	int _length;
 	int _speed;
 	Color _color;
-	Element* _head;
-	Element* _tail;
+	Body* _head;
+	Body* _tail;
 	Direction _dir;
 
 	void Move(int x, int y);
@@ -17,8 +18,8 @@ public:
 	Snake();
 	~Snake();
 
-	Element* GetHead() const;
-	Element* GetTail() const;
+	Body* GetHead() const;
+	Body* GetTail() const;
 	void SetSpeed(int value);
 	int GetSpeed() const;
 	void SetColor(Color color = Color::LightGray);
@@ -29,5 +30,6 @@ public:
 
 	void AddTail();
 	void Move();
+	int Eat(ItemBase* item);
 };
 
