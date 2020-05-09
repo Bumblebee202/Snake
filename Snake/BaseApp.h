@@ -1,7 +1,7 @@
 #pragma once
 #include <strsafe.h>
 #include <conio.h>
-#include "Timer.h"
+#include "Other/Timer.h"
 
 class BaseApp
 {

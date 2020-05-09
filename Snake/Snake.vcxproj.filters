@@ -48,9 +48,6 @@
     <ClCompile Include="BaseApp.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Timer.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Snakes\Snake.cpp">
       <Filter>Snakes</Filter>
     </ClCompile>
@@ -81,9 +78,6 @@
     <ClCompile Include="Items\Amanita.cpp">
       <Filter>Items</Filter>
     </ClCompile>
-    <ClCompile Include="Time.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Items\SpeedUp.cpp">
       <Filter>Items</Filter>
     </ClCompile>
@@ -92,6 +86,12 @@
     </ClCompile>
     <ClCompile Include="Menus\Help.cpp">
       <Filter>Menus</Filter>
+    </ClCompile>
+    <ClCompile Include="Other\Time.cpp">
+      <Filter>Other</Filter>
+    </ClCompile>
+    <ClCompile Include="Other\Timer.cpp">
+      <Filter>Other</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -102,9 +102,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="BaseApp.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Timer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Snakes\Snake.h">
@@ -158,9 +155,6 @@
     <ClInclude Include="Items\AmanitaCreator.h">
       <Filter>Items\FactoryMethod</Filter>
     </ClInclude>
-    <ClInclude Include="Time.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Items\SpeedUp.h">
       <Filter>Items</Filter>
     </ClInclude>
@@ -186,6 +180,12 @@
       <Filter>Items</Filter>
     </ClInclude>
     <ClInclude Include="Other\ThreadSafeVector.h">
+      <Filter>Other</Filter>
+    </ClInclude>
+    <ClInclude Include="Other\Time.h">
+      <Filter>Other</Filter>
+    </ClInclude>
+    <ClInclude Include="Other\Timer.h">
       <Filter>Other</Filter>
     </ClInclude>
   </ItemGroup>

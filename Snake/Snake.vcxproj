@@ -34,9 +34,9 @@
     <ClCompile Include="Menus\MainMenu.cpp" />
     <ClCompile Include="Menus\MenuBase.cpp" />
     <ClCompile Include="Menus\Pause.cpp" />
+    <ClCompile Include="Other\Time.cpp" />
+    <ClCompile Include="Other\Timer.cpp" />
     <ClCompile Include="Snakes\Snake.cpp" />
-    <ClCompile Include="Time.cpp" />
-    <ClCompile Include="Timer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BaseApp.h" />
@@ -67,9 +67,9 @@
     <ClInclude Include="Menus\MenuBase.h" />
     <ClInclude Include="Menus\Pause.h" />
     <ClInclude Include="Other\ThreadSafeVector.h" />
+    <ClInclude Include="Other\Time.h" />
+    <ClInclude Include="Other\Timer.h" />
     <ClInclude Include="Snakes\Snake.h" />
-    <ClInclude Include="Time.h" />
-    <ClInclude Include="Timer.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>

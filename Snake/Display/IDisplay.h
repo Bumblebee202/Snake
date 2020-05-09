@@ -1,6 +1,6 @@
 #pragma once
 #include "../Colors.h"
-#include "../Time.h"
+#include "../Other/Time.h"
 
 template <typename T>
 class IDisplay
