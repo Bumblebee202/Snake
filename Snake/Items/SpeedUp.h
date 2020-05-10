@@ -8,6 +8,6 @@ public:
 	SpeedUp(int x, int y);
 
 	std::wstring virtual Description() override;
-	//virtual void Effect(Snake* snake) override;
+	virtual void Effect(Snake* snake) override;
 };
 

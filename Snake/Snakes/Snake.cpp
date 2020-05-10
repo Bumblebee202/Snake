@@ -123,6 +123,7 @@ void Snake::AddTail()
 		break;
 	}
 
+	part->Symbol = static_cast<wchar_t>(164);
 	part->Prev = _tail;
 	part->Next = nullptr;
 	_tail->Next = part;
@@ -174,8 +175,7 @@ void Snake::Move()
 	}
 }
 
-int Snake::Eat(IEdible* item)
+void Snake::Eat(IEdible* item)
 {
-	//item->Effect(this);
-	return item->GetScore();	
+	item->Effect(this);
 }

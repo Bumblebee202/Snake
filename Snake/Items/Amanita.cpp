@@ -2,16 +2,16 @@
 
 Amanita::Amanita()
 {
-	_symbol = static_cast<wchar_t>(9679);
+	_symbol = static_cast<wchar_t>(9788);
 	_score = -20;
-	_color = Color::LightMagenta;
+	_color = Color::LightRed;
 }
 
 Amanita::Amanita(int x, int y) : ItemBase(x, y)
 {
-	_symbol = static_cast<wchar_t>(9679);
+	_symbol = static_cast<wchar_t>(9788);
 	_score = -20;
-	_color = Color::LightMagenta;
+	_color = Color::LightRed;
 }
 
 std::wstring Amanita::Description()
@@ -19,6 +19,7 @@ std::wstring Amanita::Description()
 	return std::wstring(L" - Amanita. Takes 20 points");
 }
 
-//void Amanita::Effect(Snake* snake)
-//{
-//}
+void Amanita::Effect(Snake* snake)
+{
+	snake->AddTail();
+}

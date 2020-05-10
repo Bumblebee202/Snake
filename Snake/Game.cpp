@@ -3,7 +3,6 @@
 Game::Game(IDisplay<wchar_t>* display) : BaseApp()
 {
 	//_deltaTime = 0.0f;
-	srand(0);
 	_pause = false;
 	_run = false;
 	_time = Time();
@@ -116,7 +115,8 @@ void Game::Start()
 									if (_items[i]->GetX() == head->X && _items[i]->GetY() == head->Y)
 									{
 										IEdible* item = _items[i];
-										_score += _snake->Eat(item);
+										_snake->Eat(item);
+										_score += item->GetScore();
 										ShowScore();
 										_items.RemoveAt(i);
 										delete[] item;
@@ -190,7 +190,7 @@ void Game::ShowSnake()
 
 void Game::ShowScore()
 {
-	_display->ShowText(L"Score: ", 65, 5);
+	_display->ShowText(L"Score:    ", 65, 5);
 	_display->ShowNumber(_score, 72, 5);
 }
 
@@ -203,23 +203,18 @@ void Game::ClearSnakeTail()
 
 ItemCreator* Game::Creator()
 {
-	int value = rand() % 2;
-	if (value == 0)
-		return new AppleCreator();
-	else if (value == 1)
-		return new PearCreator();
-	/*int value = rand() % 5;
+	int value = rand() % 5;
 
 	if (value == 0)
 		return new AppleCreator();
 	else if (value == 1)
-		return new AmanitaCreator();
-	else if (value == 2)
 		return new PearCreator();
+	else if (value == 2)
+		return new AmanitaCreator();
 	else if (value == 3)
 		return new SpeedDownCreaor();
 	else if (value == 4)
-		return new SpeedUpCreator();*/
+		return new SpeedUpCreator();
 
 	return nullptr;
 }

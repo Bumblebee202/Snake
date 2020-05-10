@@ -3,6 +3,8 @@
 #include "../Items/IEdible.h"
 #include "../Items/ItemBase.h"
 
+class IEdible;
+
 class Snake
 {
 private:
@@ -31,6 +33,6 @@ public:
 
 	void AddTail();
 	void Move();
-	int Eat(IEdible* item);
+	void Eat(IEdible* item);
 };
 
