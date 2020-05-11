@@ -58,3 +58,8 @@ bool LevelBase::IsRoad(int x, int y)
 {
 	return *(*(_field + x) + y) == L' ' ? true : false;
 }
+
+bool LevelBase::IsWall(int x, int y)
+{
+	return *(*(_field + x) + y) == static_cast<wchar_t>(9608) ? true : false;
+}

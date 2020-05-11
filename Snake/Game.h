@@ -20,6 +20,7 @@ class Game : public BaseApp
 private:
 	//std::atomic<float> _deltaTime;
 	bool _pause;
+	bool _lose;
 	int _score;
 	Time _time;
 	Snake* _snake;
@@ -34,6 +35,7 @@ protected:
 	virtual void Update(float deltaTime) override;
 	virtual void KeyPressed(int btnCode) override;
 
+	void Lose();
 	void ShowSnake();
 	void ShowScore();
 	void ClearSnakeTail();

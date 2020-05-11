@@ -2,8 +2,8 @@
 
 Game::Game(IDisplay<wchar_t>* display) : BaseApp()
 {
-	//_deltaTime = 0.0f;
 	_pause = false;
+	_lose = false;
 	_run = true;
 	_time = Time();
 	_score = 0;
@@ -34,6 +34,8 @@ void Game::Update(float deltaTime)
 	_display->SetColor();
 	_time.AddMillisecond(deltaTime);
 	_display->ShowTime(_time, 65, 3);
+	if (_lose)
+		Lose();
 
 	//(this->*Show)();
 }
@@ -112,6 +114,12 @@ void Game::Start()
 							
 							if (!_lvl->IsRoad(head->X, head->Y))
 							{
+								if (_lvl->IsWall(head->X, head->Y))
+								{
+									_lose = true;
+									return;
+								}
+
 								for (int i = 0; i < _items.Count(); i++)
 								{
 									if (_items[i]->GetX() == head->X && _items[i]->GetY() == head->Y)
@@ -180,6 +188,29 @@ void Game::Start()
 
 
 	} while (_run);
+}
+
+void Game::Lose()
+{
+	_totalScore = _score;
+	_run = false;
+	std::wstring str = L"You lose";
+	int x = (_lvl->GetRow() - str.length()) / 2;
+	int y = _lvl->GetCol() / 3;
+	_display->ShowText(str, x, y);
+
+	str = L"Press space to continue";
+	x = (_lvl->GetRow() - str.length()) / 2;
+	y++;
+	_display->ShowText(str, x, y);
+
+	int sp;
+	do
+	{
+		sp = _getch();
+		if (sp == 224)
+			sp = _getch();
+	} while (sp == 32);
 }
 
 void Game::ShowSnake()

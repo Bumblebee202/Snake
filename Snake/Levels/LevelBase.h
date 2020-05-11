@@ -22,4 +22,5 @@ public:
 	wchar_t GetSymbol(int x, int y);
 	wchar_t** GetField() const;
 	bool IsRoad(int x, int y);
+	bool IsWall(int x, int y);
 };
