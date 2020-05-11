@@ -5,21 +5,21 @@ Snake::Snake()
 	_speed = 5;
 	_color = Color::LightGray;
 
-	_head = new Element();
+	_head = new SnakePart();
 	_head->Next = nullptr;
 	_head->Prev = nullptr;
 	_head->X = 5;
 	_head->Y = 2;
 	_head->Symbol = static_cast<wchar_t>(164);
 
-	_tail = new Element();
+	_tail = new SnakePart();
 	_tail->Next = nullptr;
 	_tail->Prev = nullptr;
 	_tail->X = 3;
 	_tail->Y = 2;
 	_tail->Symbol = static_cast<wchar_t>(164);
 
-	Element* body = new Element();
+	SnakePart* body = new SnakePart();
 	body->Next = _tail;
 	body->Prev = _head;
 	body->X = 4;
@@ -43,7 +43,7 @@ void Snake::RemoveAllBody()
 {
 	while (_head != nullptr)
 	{
-		Element* temp = _head;
+		SnakePart* temp = _head;
 		_head = _head->Next;
 		if (_head != nullptr)
 			_head->Prev = nullptr;
@@ -54,12 +54,12 @@ void Snake::RemoveAllBody()
 	}
 }
 
-Element* Snake::GetHead() const
+SnakePart* Snake::GetHead() const
 {
 	return _head;
 }
 
-Element* Snake::GetTail() const
+SnakePart* Snake::GetTail() const
 {
 	return _tail;
 }
@@ -101,16 +101,35 @@ int Snake::Length() const
 
 void Snake::AddTail()
 {
-	//Element* body = new Element();
-	//body->Next = nullptr;
-	//body->Prev = _tail;
-	////body->x = ?
-	///body->y = ?
+	SnakePart* part = new SnakePart();
+	part->X = _tail->X;
+	part->Y = _tail->Y;
+	
+	switch (_dir)
+	{
+	case Direction::Right:
+		part->X--;
+		break;
+	case Direction::Left:
+		part->X++;
+		break;
+	case Direction::Up:
+		part->Y++;
+		break;
+	case Direction::Down:
+		part->Y--;
+		break;
+	default:
+		break;
+	}
 
-	//_tail->Next = body;
+	part->Symbol = static_cast<wchar_t>(164);
+	part->Prev = _tail;
+	part->Next = nullptr;
+	_tail->Next = part;
+	_tail = part;
 
-	//_tail = body;
-	//_length++;
+	_length++;
 }
 
 void Snake::Move(int x, int y)
@@ -118,7 +137,7 @@ void Snake::Move(int x, int y)
 	int elementX;
 	int elementY;
 
-	Element* el = _tail;
+	SnakePart* el = _tail;
 	while (true)
 	{
 		if (el->Prev == nullptr)
@@ -154,4 +173,9 @@ void Snake::Move()
 		Move(0, 1);
 		break;
 	}
+}
+
+void Snake::Eat(IEdible* item)
+{
+	item->Effect(this);
 }

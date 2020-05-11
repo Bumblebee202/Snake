@@ -34,9 +34,9 @@
     <ClCompile Include="Menus\MainMenu.cpp" />
     <ClCompile Include="Menus\MenuBase.cpp" />
     <ClCompile Include="Menus\Pause.cpp" />
+    <ClCompile Include="Other\Time.cpp" />
+    <ClCompile Include="Other\Timer.cpp" />
     <ClCompile Include="Snakes\Snake.cpp" />
-    <ClCompile Include="Time.cpp" />
-    <ClCompile Include="Timer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BaseApp.h" />
@@ -50,6 +50,7 @@
     <ClInclude Include="Items\AmanitaCreator.h" />
     <ClInclude Include="Items\Apple.h" />
     <ClInclude Include="Items\AppleCreator.h" />
+    <ClInclude Include="Items\IEdible.h" />
     <ClInclude Include="Items\ItemBase.h" />
     <ClInclude Include="Items\ItemCreator.h" />
     <ClInclude Include="Items\Pear.h" />
@@ -60,14 +61,14 @@
     <ClInclude Include="Items\SpeedUpCreator.h" />
     <ClInclude Include="Levels\FirstLevel.h" />
     <ClInclude Include="Levels\LevelBase.h" />
-    <ClInclude Include="Main.h" />
     <ClInclude Include="Menus\Help.h" />
     <ClInclude Include="Menus\MainMenu.h" />
     <ClInclude Include="Menus\MenuBase.h" />
     <ClInclude Include="Menus\Pause.h" />
+    <ClInclude Include="Other\ThreadSafeVector.h" />
+    <ClInclude Include="Other\Time.h" />
+    <ClInclude Include="Other\Timer.h" />
     <ClInclude Include="Snakes\Snake.h" />
-    <ClInclude Include="Time.h" />
-    <ClInclude Include="Timer.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>

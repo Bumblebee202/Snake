@@ -1,7 +1,7 @@
 #pragma once
 #include <strsafe.h>
 #include <conio.h>
-#include "Timer.h"
+#include "Other/Timer.h"
 
 class BaseApp
 {
@@ -18,5 +18,6 @@ public:
 	BaseApp();
 
 	virtual void Start() = 0;
+	virtual void Stop();
 };
 

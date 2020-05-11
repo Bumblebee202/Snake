@@ -1,7 +1,8 @@
 #include "Pause.h"
 
-Pause::Pause(IDisplay<wchar_t>* display, int rowWidth) : MenuBase(display, rowWidth)
+Pause::Pause(BaseApp* game, IDisplay<wchar_t>* display, int rowWidth) : MenuBase(display, rowWidth)
 {
+	_game = game;
 	_selectedMenuItem = 0;
 	_length = 2;
 	_menu = new std::wstring[2];
@@ -11,17 +12,14 @@ Pause::Pause(IDisplay<wchar_t>* display, int rowWidth) : MenuBase(display, rowWi
 void Pause::SelectMenuItem()
 {
 	std::wstring menuItem = *(_menu + _selectedMenuItem);
+	Clear();
 
 	if (menuItem._Equal(L"Continue"))
-	{
-		Clear();
 		_selectedMenuItem = 0;
-		_close = true;
-	}
 	else if (menuItem._Equal(L"Exit"))
-	{
+		_game->Stop();
 
-	}
+	_close = true;
 }
 
 void Pause::GenerateMenu()

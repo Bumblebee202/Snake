@@ -22,14 +22,18 @@ public:
 	void ShowObject(T obj, int x = 0, int y = 0) override;
 	void ShowObjects(T* objs, int len, int startX = 0, int startY = 0) override;
 	void ShowObjects(T** objs, int row, int col, int startX = 0, int startY = 0) override;
-	void ShowText(wchar_t* text, int len, int startX = 0, int startY = 0) override;
+	void ShowText(wchar_t* text, int startX = 0, int startY = 0) override;
 	void ShowText(std::wstring text, int startX = 0, int startY = 0) override;
 	void ShowTime(Time& time, int x = 0, int y = 0) override;
+	void ShowNumber(int value, int x = 0, int y = 0) override;
+	void ShowNumber(float value, int x = 0, int y = 0) override;
 };
 
 template<typename T>
 ConsoleDisplay<T>::ConsoleDisplay() : IDisplay<T>()
 {
+	//_mutex = std::mutex();
+
 	_handle = GetStdHandle(STD_OUTPUT_HANDLE);
 	_cursorCoord.X = 25;
 	_cursorCoord.Y = 40;
@@ -131,7 +135,7 @@ inline void ConsoleDisplay<T>::ShowObjects(T** objs, int row, int col, int start
 }
 
 template<typename T>
-inline void ConsoleDisplay<T>::ShowText(wchar_t* text, int len, int startX, int startY)
+inline void ConsoleDisplay<T>::ShowText(wchar_t* text, int startX, int startY)
 {
 	_mutex.lock();
 	_cursorCoord.X = startX;
@@ -163,5 +167,27 @@ inline void ConsoleDisplay<T>::ShowTime(Time& time, int x, int y)
 	if (time.Hour() > 0)
 		std::wcout << time.Hour() << L":";
 	std::wcout << time.Minute() << L":" << time.Second();
+	_mutex.unlock();
+}
+
+template<typename T>
+inline void ConsoleDisplay<T>::ShowNumber(int value, int x, int y)
+{
+	_mutex.lock();
+	_cursorCoord.X = x;
+	_cursorCoord.Y = y;
+	SetConsoleCursorPosition(_handle, _cursorCoord);
+	std::wcout << value;
+	_mutex.unlock();
+}
+
+template<typename T>
+inline void ConsoleDisplay<T>::ShowNumber(float value, int x, int y)
+{
+	_mutex.lock();
+	_cursorCoord.X = x;
+	_cursorCoord.Y = y;
+	SetConsoleCursorPosition(_handle, _cursorCoord);
+	std::wcout << value;
 	_mutex.unlock();
 }

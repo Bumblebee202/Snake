@@ -1,5 +1,9 @@
 #pragma once
 #include "../Header.h"
+#include "../Items/IEdible.h"
+#include "../Items/ItemBase.h"
+
+class IEdible;
 
 class Snake
 {
@@ -7,8 +11,8 @@ private:
 	int _length;
 	int _speed;
 	Color _color;
-	Element* _head;
-	Element* _tail;
+	SnakePart* _head;
+	SnakePart* _tail;
 	Direction _dir;
 
 	void Move(int x, int y);
@@ -17,8 +21,8 @@ public:
 	Snake();
 	~Snake();
 
-	Element* GetHead() const;
-	Element* GetTail() const;
+	SnakePart* GetHead() const;
+	SnakePart* GetTail() const;
 	void SetSpeed(int value);
 	int GetSpeed() const;
 	void SetColor(Color color = Color::LightGray);
@@ -29,5 +33,6 @@ public:
 
 	void AddTail();
 	void Move();
+	void Eat(IEdible* item);
 };
 

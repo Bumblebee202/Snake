@@ -10,12 +10,12 @@ enum class Direction
 	Down
 };
 
-struct Element
+struct SnakePart
 {
 	wchar_t Symbol;
 	int X;
 	int Y;
-	Element* Next;
-	Element* Prev;
+	SnakePart* Next;
+	SnakePart* Prev;
 };
 

@@ -7,7 +7,6 @@ MainMenu::MainMenu() : MenuBase()
 	_length = 5;
 	_menu = new std::wstring[_length];
 	_display = new ConsoleDisplay<wchar_t>();
-	_game = new Game(_display);
 	_selectedMenu = nullptr;
 
 	GenerateMenu();
@@ -26,33 +25,36 @@ void MainMenu::SelectMenuItem()
 {
 	std::wstring menuItem = *(_menu + _selectedMenuItem);
 	
+	Clear();
+
 	if (menuItem._Equal(L"Start"))
 	{
-		Clear();
-		if (_game == nullptr)
-			_game = new Game(_display);
+		_game = new Game(_display);
 		_game->Start();
+
+		_display->SetWidnowSize(60, 30);
+
+		delete _game;
+		_game = nullptr;
 	}
 	else if (menuItem._Equal(L"Rating"))
 	{
-		Clear();
 		//_selectedMenu = 
 	}
 	else if (menuItem._Equal(L"Snake Color"))
 	{
-		Clear();
 		//_selectedMenu = 
 	}
 	else if (menuItem._Equal(L"Help"))
 	{
-		Clear();
 		Help help = Help(_display, _width);
 		help.Open();
-		Show();
 		//_selectedMenu =
 	}
 	else if (menuItem._Equal(L"Exit"))
 		exit(0);
+
+	Show();
 }
 
 void MainMenu::Open()
