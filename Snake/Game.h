@@ -37,6 +37,7 @@ protected:
 	void ShowSnake();
 	void ShowScore();
 	void ClearSnakeTail();
+	void ClearField();
 	ItemCreator* Creator();
 public:
 	Game(IDisplay<wchar_t>* display);

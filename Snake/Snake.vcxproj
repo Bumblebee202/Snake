@@ -61,7 +61,6 @@
     <ClInclude Include="Items\SpeedUpCreator.h" />
     <ClInclude Include="Levels\FirstLevel.h" />
     <ClInclude Include="Levels\LevelBase.h" />
-    <ClInclude Include="Main.h" />
     <ClInclude Include="Menus\Help.h" />
     <ClInclude Include="Menus\MainMenu.h" />
     <ClInclude Include="Menus\MenuBase.h" />

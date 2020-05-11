@@ -4,13 +4,13 @@ Game::Game(IDisplay<wchar_t>* display) : BaseApp()
 {
 	//_deltaTime = 0.0f;
 	_pause = false;
-	_run = false;
+	_run = true;
 	_time = Time();
 	_score = 0;
 	_snake = new Snake();
 	_lvl = new FirstLevel();
 	_display = display;
-	_menu = new Pause(display, _lvl->GetCol());
+	_menu = new Pause(this, display, _lvl->GetRow());
 
 	/*_display->SetWidnowSize(_lvl->GetCol(), _lvl->GetRow());
 	_display->ShowObjects(_lvl->GetField(), _lvl->GetRow(), _lvl->GetCol());*/
@@ -80,28 +80,30 @@ void Game::KeyPressed(int btnCode)
 
 void Game::Start()
 {
+	_display->SetWidnowSize(_lvl->GetRow() + 20, _lvl->GetCol());
+	_display->ShowObjects(_lvl->GetField(), _lvl->GetRow(), _lvl->GetCol());
+
+	std::wstring str = L"Press space to continue";
+	int x = (_lvl->GetRow() - str.length()) / 2;
+	int y = _lvl->GetCol() / 3;
+	_display->ShowText(str, x, y);
 	do
 	{
-		_display->SetWidnowSize(_lvl->GetRow() + 20, _lvl->GetCol());
-		_display->ShowObjects(_lvl->GetField(), _lvl->GetRow(), _lvl->GetCol());
-		std::wstring str = L"Press space to continue";
-		int x = (_lvl->GetRow() - str.length()) / 2;
-		int y = _lvl->GetCol() / 3;
-		_display->ShowText(str, x, y);
-
 		int sp = _getch();
 		if (sp == 32)
 		{
 			_display->ShowText(_lvl->GetLevel(), 65, 1);
 			str = std::wstring(str.length(), L' ');
 			_display->ShowText(str, x, y);
+
 			ShowScore();
 			ShowSnake();
+
 			SnakePart* head = _snake->GetHead();
-			std::thread t1([&]()
+			std::thread snakeMovement([&]()
 				{
 					int sleep;
-					while (true)
+					while (_run)
 					{
 						if (!_pause)
 						{
@@ -131,12 +133,12 @@ void Game::Start()
 					}
 				});
 
-			std::thread t2([&]()
+			std::thread itemCreator([&]()
 				{
 					ItemCreator* creator = nullptr;
 					int x;
 					int y;
-					while (true)
+					while (_run)
 					{
 						if (!_pause)
 						{
@@ -171,10 +173,13 @@ void Game::Start()
 				});
 
 			Run();
+			snakeMovement.detach();
+			itemCreator.detach();
+			ClearField();
 		}
 
 
-	} while (true);
+	} while (_run);
 }
 
 void Game::ShowSnake()
@@ -199,6 +204,15 @@ void Game::ClearSnakeTail()
 	_display->SetColor(Color::Black, _snake->GetColor());
 	SnakePart* el = _snake->GetTail();
 	_display->ShowObject(L' ', el->X, el->Y);
+}
+
+void Game::ClearField()
+{
+	for (int i = 0; i < _lvl->GetRow(); i++)
+	{
+		for (int j = 0; j < _lvl->GetCol(); j++)
+			_display->ShowObject(L' ', i, j);
+	}
 }
 
 ItemCreator* Game::Creator()

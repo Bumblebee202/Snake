@@ -9,14 +9,19 @@ BaseApp::BaseApp()
 
 void BaseApp::Run()
 {
-	while (true)
+	while (_run)
 	{
 		_timer.Start();
 
 		if (_kbhit())
 			KeyPressed(_getch());
 
-		Update((float)_deltaTime / 1000.0f);
+		float deltaTime = (float)_deltaTime / 1000.0f;
+		if (deltaTime < 1.0f)
+			Update(deltaTime);
+		else
+			_deltaTime = 0;
+		
 
 		while (true)
 		{
@@ -25,4 +30,9 @@ void BaseApp::Run()
 				break;
 		}
 	}
+}
+
+void BaseApp::Stop()
+{
+	_run = false;
 }
