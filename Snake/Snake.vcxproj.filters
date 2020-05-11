@@ -140,29 +140,11 @@
     <ClInclude Include="Items\Amanita.h">
       <Filter>Items</Filter>
     </ClInclude>
-    <ClInclude Include="Items\ItemCreator.h">
-      <Filter>Items\FactoryMethod</Filter>
-    </ClInclude>
-    <ClInclude Include="Items\AppleCreator.h">
-      <Filter>Items\FactoryMethod</Filter>
-    </ClInclude>
-    <ClInclude Include="Items\PearCreator.h">
-      <Filter>Items\FactoryMethod</Filter>
-    </ClInclude>
-    <ClInclude Include="Items\AmanitaCreator.h">
-      <Filter>Items\FactoryMethod</Filter>
-    </ClInclude>
     <ClInclude Include="Items\SpeedUp.h">
       <Filter>Items</Filter>
     </ClInclude>
     <ClInclude Include="Items\SpeedDown.h">
       <Filter>Items</Filter>
-    </ClInclude>
-    <ClInclude Include="Items\SpeedUpCreator.h">
-      <Filter>Items\FactoryMethod</Filter>
-    </ClInclude>
-    <ClInclude Include="Items\SpeedDownCreaor.h">
-      <Filter>Items\FactoryMethod</Filter>
     </ClInclude>
     <ClInclude Include="Creators.h">
       <Filter>Header Files</Filter>
@@ -184,6 +166,24 @@
     </ClInclude>
     <ClInclude Include="Other\Timer.h">
       <Filter>Other</Filter>
+    </ClInclude>
+    <ClInclude Include="Items\FactoryMethod\AmanitaCreator.h">
+      <Filter>Items\FactoryMethod</Filter>
+    </ClInclude>
+    <ClInclude Include="Items\FactoryMethod\AppleCreator.h">
+      <Filter>Items\FactoryMethod</Filter>
+    </ClInclude>
+    <ClInclude Include="Items\FactoryMethod\ItemCreator.h">
+      <Filter>Items\FactoryMethod</Filter>
+    </ClInclude>
+    <ClInclude Include="Items\FactoryMethod\PearCreator.h">
+      <Filter>Items\FactoryMethod</Filter>
+    </ClInclude>
+    <ClInclude Include="Items\FactoryMethod\SpeedDownCreaor.h">
+      <Filter>Items\FactoryMethod</Filter>
+    </ClInclude>
+    <ClInclude Include="Items\FactoryMethod\SpeedUpCreator.h">
+      <Filter>Items\FactoryMethod</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

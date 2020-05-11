@@ -17,7 +17,7 @@ void BaseApp::Run()
 			KeyPressed(_getch());
 
 		float deltaTime = (float)_deltaTime / 1000.0f;
-		if (deltaTime < 1.0f)
+		if (deltaTime < 0.3f)
 			Update(deltaTime);
 		else
 			_deltaTime = 0;
