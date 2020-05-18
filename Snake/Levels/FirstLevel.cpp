@@ -2,22 +2,22 @@
 
 FirstLevel::FirstLevel() : LevelBase()
 {
+	_toNextLvl = 20;
 	_row = 60;
 	_col = 30;
+	
 	_field = new wchar_t* [_row];
 
 	for (int i = 0; i < _row; i++)
 		_field[i] = new wchar_t[_col];
-
-	GenerateField();
 }
 
-std::wstring FirstLevel::GetLevel() const
+int FirstLevel::GetLevel() const
 {
-	return std::wstring(L"Level: 1");
+	return 1;
 }
 
-void FirstLevel::GenerateField()
+void FirstLevel::Loading()
 {
 	for (int i = 0; i < _row; i++)
 	{

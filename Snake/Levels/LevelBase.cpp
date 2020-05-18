@@ -54,6 +54,16 @@ wchar_t** LevelBase::GetField() const
 	return _field;
 }
 
+int LevelBase::GetToNextLvl() const
+{
+	return _toNextLvl;
+}
+
+void LevelBase::SetToNextLvl(int value)
+{
+	_toNextLvl = value;
+}
+
 bool LevelBase::IsRoad(int x, int y)
 {
 	return *(*(_field + x) + y) == L' ' ? true : false;
