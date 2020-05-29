@@ -16,5 +16,6 @@ public:
 	virtual void ShowTime(Time& time, int x = 0, int y = 0) = 0;
 	virtual void ShowNumber(int value, int x = 0, int y = 0) = 0;
 	virtual void ShowNumber(float value, int x = 0, int y = 0) = 0;
+	virtual void ShowSymbol(wchar_t value, int x = 0, int y = 0) = 0;
 };
 

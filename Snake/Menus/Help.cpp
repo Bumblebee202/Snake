@@ -63,7 +63,7 @@ void Help::Show()
 		_display->SetColor();
 		_display->ShowText(str, x + 1, 10 + i);
 	}
-	str = L"press Esc to go back";
+	str = L"Press Esc to go back";
 	x = (_width - str.length() + 1) / 2;
 	i++;
 	_display->ShowText(str, x, 10 + i);

@@ -27,13 +27,12 @@ public:
 	void ShowTime(Time& time, int x = 0, int y = 0) override;
 	void ShowNumber(int value, int x = 0, int y = 0) override;
 	void ShowNumber(float value, int x = 0, int y = 0) override;
+	void ShowSymbol(wchar_t value, int x = 0, int y = 0) override;
 };
 
 template<typename T>
 ConsoleDisplay<T>::ConsoleDisplay() : IDisplay<T>()
 {
-	//_mutex = std::mutex();
-
 	_handle = GetStdHandle(STD_OUTPUT_HANDLE);
 	_cursorCoord.X = 25;
 	_cursorCoord.Y = 40;
@@ -183,6 +182,17 @@ inline void ConsoleDisplay<T>::ShowNumber(int value, int x, int y)
 
 template<typename T>
 inline void ConsoleDisplay<T>::ShowNumber(float value, int x, int y)
+{
+	_mutex.lock();
+	_cursorCoord.X = x;
+	_cursorCoord.Y = y;
+	SetConsoleCursorPosition(_handle, _cursorCoord);
+	std::wcout << value;
+	_mutex.unlock();
+}
+
+template<typename T>
+inline void ConsoleDisplay<T>::ShowSymbol(wchar_t value, int x, int y)
 {
 	_mutex.lock();
 	_cursorCoord.X = x;
