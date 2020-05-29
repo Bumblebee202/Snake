@@ -9,9 +9,9 @@ Time::Time()
 	_hour = 0;
 }
 
-Time::Time(int hour, int minute, int second, int millisecond)
+Time::Time(int hour, int minute, int second, float millisecond)
 {
-	_millisecond = static_cast<float>(millisecond);
+	_millisecond = millisecond;
 	_second = second;
 	_minute = minute;
 	_hour = hour;
@@ -35,6 +35,22 @@ int Time::Minute() const
 int Time::Hour() const
 {
 	return static_cast<int>(_hour);
+}
+
+void Time::Add(Time& value)
+{
+	AddMillisecond(value.Millisecond());
+	AddSeconds(value.Second());
+	AddMinutes(value.Minute());
+	AddHours(value.Hour());
+}
+
+void Time::Add(int hour, int minute, int second, float millisecond)
+{
+	AddMillisecond(millisecond);
+	AddSeconds(second);
+	AddMinutes(minute);
+	AddHours(hour);
 }
 
 void Time::AddMillisecond(float value)
@@ -70,6 +86,22 @@ void Time::AddMinutes(int value)
 void Time::AddHours(int value)
 {
 	_hour += value;
+}
+
+void Time::SetTime(Time& value)
+{
+	_millisecond = value.Millisecond();
+	_second = value.Second();
+	_minute = value.Minute();
+	_hour = value.Hour();
+}
+
+void Time::SetTime(int hour, int minute, int second, float millisecond)
+{
+	_millisecond = millisecond;
+	_second = second;
+	_minute = minute;
+	_hour = hour;
 }
 
 std::wstring Time::ToString()

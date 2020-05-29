@@ -26,6 +26,5 @@ public:
 	Color GetColor() const;
 	std::wstring virtual Description() = 0;
 	int GetScore() override;
-	//void virtual Effect(Snake* snake) override = 0;
 };
 

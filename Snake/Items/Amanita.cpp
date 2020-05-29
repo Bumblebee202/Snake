@@ -19,7 +19,7 @@ std::wstring Amanita::Description()
 	return std::wstring(L" - Amanita. Takes 20 points");
 }
 
-void Amanita::Effect(Snake* snake)
+void Amanita::Interaction(Snake* snake)
 {
 	snake->AddTail();
 }

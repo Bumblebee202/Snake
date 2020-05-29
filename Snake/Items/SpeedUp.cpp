@@ -1,4 +1,5 @@
 #include "SpeedUp.h"
+#include "../Snakes/State/SpeedMove.h"
 
 SpeedUp::SpeedUp()
 {
@@ -19,7 +20,9 @@ std::wstring SpeedUp::Description()
 	return std::wstring(L" - Speed up.");
 }
 
-void SpeedUp::Effect(Snake* snake)
+void SpeedUp::Interaction(Snake* snake)
 {
-	snake->SetSpeed(10);
+	delete snake->GetMoveState();
+	SpeedMove* state = new SpeedMove(snake);
+	snake->SetMoveState(state);
 }

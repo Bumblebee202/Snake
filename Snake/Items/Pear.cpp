@@ -19,7 +19,7 @@ std::wstring Pear::Description()
 	return std::wstring(L" - Pear. Gives 10 points");
 }
 
-void Pear::Effect(Snake* snake)
+void Pear::Interaction(Snake* snake)
 {
 	snake->AddTail();
 }

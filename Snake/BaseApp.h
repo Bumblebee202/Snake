@@ -16,6 +16,7 @@ protected:
 	void Run();
 public:
 	BaseApp();
+	virtual ~BaseApp();
 
 	virtual void Start() = 0;
 	virtual void Stop();

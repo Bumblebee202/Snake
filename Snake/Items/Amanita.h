@@ -8,6 +8,6 @@ public:
 	Amanita(int x, int y);
 
 	virtual std::wstring Description() override;
-	virtual void Effect(Snake* snake) override;
+	virtual void Interaction(Snake* snake) override;
 };
 

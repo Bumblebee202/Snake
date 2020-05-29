@@ -1,4 +1,5 @@
 #include "SpeedDown.h"
+#include "../Snakes/State/SlowSpeed.h"
 
 SpeedDown::SpeedDown()
 {
@@ -19,7 +20,9 @@ std::wstring SpeedDown::Description()
 	return std::wstring(L" - Speed down.");
 }
 
-void SpeedDown::Effect(Snake* snake)
+void SpeedDown::Interaction(Snake* snake)
 {
-	snake->SetSpeed(2);
+	delete snake->GetMoveState();
+	SlowSpeed* slowSnake = new SlowSpeed(snake);
+	snake->SetMoveState(slowSnake);
 }

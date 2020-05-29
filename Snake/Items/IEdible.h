@@ -7,6 +7,6 @@ class IEdible
 {
 public:
 	int virtual GetScore() = 0;
-	void virtual Effect(Snake* snake) = 0;
+	virtual void Interaction(Snake* snake) = 0;
 };
 

@@ -25,9 +25,6 @@
     <Filter Include="Displays">
       <UniqueIdentifier>{cc4db532-a7bd-4f20-baf8-d8052bf416ff}</UniqueIdentifier>
     </Filter>
-    <Filter Include="SQLite">
-      <UniqueIdentifier>{8f32fb3a-269e-4215-a0be-ebdd4731ef28}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Items">
       <UniqueIdentifier>{38edb747-484f-4446-b4d1-6b3bf238b4ff}</UniqueIdentifier>
     </Filter>
@@ -36,6 +33,9 @@
     </Filter>
     <Filter Include="Other">
       <UniqueIdentifier>{df7b0010-bb54-441f-8b6e-347295c8fdaf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Snakes\State">
+      <UniqueIdentifier>{7b8b2736-b1d6-4b68-836b-bfeae046ff63}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -92,6 +92,21 @@
     </ClCompile>
     <ClCompile Include="Other\Timer.cpp">
       <Filter>Other</Filter>
+    </ClCompile>
+    <ClCompile Include="Levels\SecondLevel.cpp">
+      <Filter>Levels</Filter>
+    </ClCompile>
+    <ClCompile Include="Snakes\State\MoveBase.cpp">
+      <Filter>Snakes\State</Filter>
+    </ClCompile>
+    <ClCompile Include="Snakes\State\SpeedMove.cpp">
+      <Filter>Snakes\State</Filter>
+    </ClCompile>
+    <ClCompile Include="Snakes\State\NormalMove.cpp">
+      <Filter>Snakes\State</Filter>
+    </ClCompile>
+    <ClCompile Include="Snakes\State\SlowSpeed.cpp">
+      <Filter>Snakes\State</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -179,11 +194,26 @@
     <ClInclude Include="Items\FactoryMethod\PearCreator.h">
       <Filter>Items\FactoryMethod</Filter>
     </ClInclude>
-    <ClInclude Include="Items\FactoryMethod\SpeedDownCreaor.h">
-      <Filter>Items\FactoryMethod</Filter>
-    </ClInclude>
     <ClInclude Include="Items\FactoryMethod\SpeedUpCreator.h">
       <Filter>Items\FactoryMethod</Filter>
+    </ClInclude>
+    <ClInclude Include="Levels\SecondLevel.h">
+      <Filter>Levels</Filter>
+    </ClInclude>
+    <ClInclude Include="Items\FactoryMethod\SpeedDownCreator.h">
+      <Filter>Items\FactoryMethod</Filter>
+    </ClInclude>
+    <ClInclude Include="Snakes\State\MoveBase.h">
+      <Filter>Snakes\State</Filter>
+    </ClInclude>
+    <ClInclude Include="Snakes\State\SpeedMove.h">
+      <Filter>Snakes\State</Filter>
+    </ClInclude>
+    <ClInclude Include="Snakes\State\SlowSpeed.h">
+      <Filter>Snakes\State</Filter>
+    </ClInclude>
+    <ClInclude Include="Snakes\State\NormalMove.h">
+      <Filter>Snakes\State</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

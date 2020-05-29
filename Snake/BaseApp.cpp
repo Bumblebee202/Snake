@@ -7,6 +7,10 @@ BaseApp::BaseApp()
 	_timer = Timer();
 }
 
+BaseApp::~BaseApp()
+{
+}
+
 void BaseApp::Run()
 {
 	while (_run)

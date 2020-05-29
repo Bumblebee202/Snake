@@ -19,7 +19,7 @@ std::wstring Apple::Description()
 	return std::wstring(L" - Apple. Gives 10 points");
 }
 
-void Apple::Effect(Snake* snake)
+void Apple::Interaction(Snake* snake)
 {
 	snake->AddTail();
 }

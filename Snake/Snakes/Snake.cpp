@@ -2,7 +2,8 @@
 
 Snake::Snake()
 {
-	_speed = 5;
+	_symbol = static_cast<wchar_t>(164);
+
 	_color = Color::LightGray;
 
 	_head = new SnakePart();
@@ -10,21 +11,18 @@ Snake::Snake()
 	_head->Prev = nullptr;
 	_head->X = 5;
 	_head->Y = 2;
-	_head->Symbol = static_cast<wchar_t>(164);
 
 	_tail = new SnakePart();
 	_tail->Next = nullptr;
 	_tail->Prev = nullptr;
 	_tail->X = 3;
 	_tail->Y = 2;
-	_tail->Symbol = static_cast<wchar_t>(164);
 
 	SnakePart* body = new SnakePart();
 	body->Next = _tail;
 	body->Prev = _head;
 	body->X = 4;
 	body->Y = 2;
-	body->Symbol = static_cast<wchar_t>(164);
 
 	_head->Next = body;
 	_tail->Prev = body;
@@ -64,14 +62,19 @@ SnakePart* Snake::GetTail() const
 	return _tail;
 }
 
-void Snake::SetSpeed(int value)
+void Snake::SetSymbol(wchar_t value)
 {
-	_speed = value;
+	_symbol = value;
+}
+
+wchar_t Snake::GetSymbol() const
+{
+	return _symbol;
 }
 
 int Snake::GetSpeed() const
 {
-	return _speed;
+	return _move->GetSpeed();
 }
 
 void Snake::SetColor(Color color)
@@ -92,6 +95,16 @@ void Snake::SetDirection(Direction dir)
 Direction Snake::GetDirection() const
 {
 	return _dir;
+}
+
+void Snake::SetMoveState(MoveBase* moveState)
+{
+	_move = moveState;
+}
+
+MoveBase* Snake::GetMoveState() const
+{
+	return _move;
 }
 
 int Snake::Length() const
@@ -123,7 +136,6 @@ void Snake::AddTail()
 		break;
 	}
 
-	part->Symbol = static_cast<wchar_t>(164);
 	part->Prev = _tail;
 	part->Next = nullptr;
 	_tail->Next = part;
@@ -132,50 +144,28 @@ void Snake::AddTail()
 	_length++;
 }
 
-void Snake::Move(int x, int y)
+void Snake::AddTail(SnakePart* part)
 {
-	int elementX;
-	int elementY;
-
-	SnakePart* el = _tail;
-	while (true)
+	if (_tail == nullptr)
 	{
-		if (el->Prev == nullptr)
-			break;
+		_head = part;
+		_tail = _head;
+		_head->Next = nullptr;
+		_head->Prev = nullptr;
+	}
+	else if (_tail != nullptr)
+	{
+		part->Prev = _tail;
+		part->Next = nullptr;
 
-		el->X = el->Prev->X;
-		el->Y = el->Prev->Y;
-
-		el = el->Prev;
+		_tail->Next = part;
+		_tail = part;
 	}
 
-	_head->X += x;
-	_head->Y += y;
+	_length++;
 }
 
 void Snake::Move()
 {
-	switch (_dir)
-	{
-	case Direction::Left:
-		Move(-1, 0);
-		break;
-
-	case Direction::Right:
-		Move(1, 0);
-		break;
-
-	case Direction::Up:
-		Move(0, -1);
-		break;
-
-	case Direction::Down:
-		Move(0, 1);
-		break;
-	}
-}
-
-void Snake::Eat(IEdible* item)
-{
-	item->Effect(this);
+	_move->Move();
 }

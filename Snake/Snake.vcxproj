@@ -29,6 +29,7 @@
     <ClCompile Include="Items\SpeedUp.cpp" />
     <ClCompile Include="Levels\FirstLevel.cpp" />
     <ClCompile Include="Levels\LevelBase.cpp" />
+    <ClCompile Include="Levels\SecondLevel.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Menus\Help.cpp" />
     <ClCompile Include="Menus\MainMenu.cpp" />
@@ -37,6 +38,10 @@
     <ClCompile Include="Other\Time.cpp" />
     <ClCompile Include="Other\Timer.cpp" />
     <ClCompile Include="Snakes\Snake.cpp" />
+    <ClCompile Include="Snakes\State\MoveBase.cpp" />
+    <ClCompile Include="Snakes\State\NormalMove.cpp" />
+    <ClCompile Include="Snakes\State\SlowSpeed.cpp" />
+    <ClCompile Include="Snakes\State\SpeedMove.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BaseApp.h" />
@@ -52,7 +57,7 @@
     <ClInclude Include="Items\FactoryMethod\AppleCreator.h" />
     <ClInclude Include="Items\FactoryMethod\ItemCreator.h" />
     <ClInclude Include="Items\FactoryMethod\PearCreator.h" />
-    <ClInclude Include="Items\FactoryMethod\SpeedDownCreaor.h" />
+    <ClInclude Include="Items\FactoryMethod\SpeedDownCreator.h" />
     <ClInclude Include="Items\FactoryMethod\SpeedUpCreator.h" />
     <ClInclude Include="Items\IEdible.h" />
     <ClInclude Include="Items\ItemBase.h" />
@@ -61,6 +66,7 @@
     <ClInclude Include="Items\SpeedUp.h" />
     <ClInclude Include="Levels\FirstLevel.h" />
     <ClInclude Include="Levels\LevelBase.h" />
+    <ClInclude Include="Levels\SecondLevel.h" />
     <ClInclude Include="Menus\Help.h" />
     <ClInclude Include="Menus\MainMenu.h" />
     <ClInclude Include="Menus\MenuBase.h" />
@@ -69,6 +75,10 @@
     <ClInclude Include="Other\Time.h" />
     <ClInclude Include="Other\Timer.h" />
     <ClInclude Include="Snakes\Snake.h" />
+    <ClInclude Include="Snakes\State\MoveBase.h" />
+    <ClInclude Include="Snakes\State\NormalMove.h" />
+    <ClInclude Include="Snakes\State\SlowSpeed.h" />
+    <ClInclude Include="Snakes\State\SpeedMove.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>

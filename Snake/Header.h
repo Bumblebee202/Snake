@@ -12,7 +12,6 @@ enum class Direction
 
 struct SnakePart
 {
-	wchar_t Symbol;
 	int X;
 	int Y;
 	SnakePart* Next;
