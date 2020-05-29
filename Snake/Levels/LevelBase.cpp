@@ -5,6 +5,7 @@ LevelBase::LevelBase()
 	_field = nullptr;
 	_col = 0;
 	_row = 0;
+	_toNextLvl = 0;
 }
 
 LevelBase::LevelBase(wchar_t** field, int row, int col)
@@ -12,6 +13,15 @@ LevelBase::LevelBase(wchar_t** field, int row, int col)
 	_field = field;
 	_row = row;
 	_col = col;
+	_toNextLvl = 0;
+}
+
+LevelBase::LevelBase(wchar_t** field, int row, int col, int toNextLvl)
+{
+	_field = field;
+	_row = row;
+	_col = col;
+	_toNextLvl = toNextLvl;
 }
 
 LevelBase::~LevelBase()

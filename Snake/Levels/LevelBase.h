@@ -12,6 +12,7 @@ protected:
 public:
 	LevelBase();
 	LevelBase(wchar_t** field, int row, int col);
+	LevelBase(wchar_t** field, int row, int col, int toNextLvl);
 	virtual ~LevelBase();
 
 	void virtual Loading() = 0;

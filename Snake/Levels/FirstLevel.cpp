@@ -2,7 +2,7 @@
 
 FirstLevel::FirstLevel() : LevelBase()
 {
-	_toNextLvl = 20;
+	_toNextLvl = 100;
 	_row = 60;
 	_col = 30;
 	
