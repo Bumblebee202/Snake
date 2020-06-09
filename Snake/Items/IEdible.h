@@ -1,7 +1,6 @@
 #pragma once
 #include "../Snakes/Snake.h"
 
-class Snake;
 
 class IEdible
 {
