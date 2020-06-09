@@ -4,6 +4,7 @@
 #include <Windows.h>
 #include <thread>
 #include "Other/ThreadSafeVector.h"
+#include "Other/Random.h"
 #include "BaseApp.h"
 #include "Header.h"
 #include "Menus/MenuBase.h"
@@ -27,6 +28,7 @@ private:
 	int _score;
 	Time _time;
 	Time _totalTime;
+	Random _random;
 	Snake* _snake;
 	LevelBase* _lvl;
 	IDisplay<wchar_t>* _display;

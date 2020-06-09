@@ -11,8 +11,6 @@ int main()
 	_setmode(_fileno(stdin), _O_U16TEXT);
 	_setmode(_fileno(stderr), _O_U16TEXT);
 
-	srand(0);
-
 	MenuBase* menu = new MainMenu();
 	menu->Open();
 
