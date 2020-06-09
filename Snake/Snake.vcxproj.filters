@@ -108,6 +108,9 @@
     <ClCompile Include="Snakes\State\SlowSpeed.cpp">
       <Filter>Snakes\State</Filter>
     </ClCompile>
+    <ClCompile Include="Other\Random.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h">
@@ -214,6 +217,9 @@
     </ClInclude>
     <ClInclude Include="Snakes\State\NormalMove.h">
       <Filter>Snakes\State</Filter>
+    </ClInclude>
+    <ClInclude Include="Other\Random.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

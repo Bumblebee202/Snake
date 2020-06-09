@@ -2,7 +2,7 @@
 #include "ItemCreator.h"
 #include "../SpeedDown.h"
 
-class SpeedDownCreaor :	public ItemCreator
+class SpeedDownCreator : public ItemCreator
 {
 public:
 	virtual ItemBase* Create(int x, int y) override

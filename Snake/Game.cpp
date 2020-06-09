@@ -9,6 +9,7 @@ Game::Game(IDisplay<wchar_t>* display) : BaseApp()
 	_run = true;
 	_time = Time();
 	_totalTime = Time();
+	_random = Random();
 	_score = 0;
 	_totalScore = 0;
 	_snake = nullptr;
@@ -73,7 +74,6 @@ void Game::KeyPressed(int btnCode)
 
 	_snake->SetDirection(dir);
 }
-
 
 void Game::Start()
 {
@@ -218,7 +218,19 @@ void Game::ClearField()
 
 ItemCreator* Game::Creator()
 {
-	int value = rand() % 5;
+	float value = _random.Next(0.0f, 1.0f);
+
+	if (value <= 0.25f)
+		return new AppleCreator();
+	else if (value > 0.25f && value <= 0.5f)
+		return new PearCreator();
+	else if (value > 0.5f && value <= 0.7f)
+		return new AmanitaCreator();
+	else if (value > 0.7f && value <= 0.85f)
+		return new SpeedDownCreator();
+	else if (value > 0.85f && value <= 1.0f)
+		return new SpeedUpCreator();
+	/*int value = rand() % 5;
 
 	if (value == 0)
 		return new AppleCreator();
@@ -229,7 +241,7 @@ ItemCreator* Game::Creator()
 	else if (value == 3)
 		return new SpeedDownCreaor();
 	else if (value == 4)
-		return new SpeedUpCreator();
+		return new SpeedUpCreator();*/
 
 	return nullptr;
 }
@@ -267,6 +279,9 @@ void Game::SnakeMovement()
 
 						IEdible* item = _items[i];
 						item->Interaction(_snake);
+						tail = _snake->GetTail();
+						/*tail->X = oldX;
+						tail->Y = oldY;*/
 						_score += item->GetScore();
 
 						int score = _lvl->GetToNextLvl() - item->GetScore();
@@ -294,6 +309,7 @@ void Game::SnakeMovement()
 
 void Game::ItemMaker()
 {
+	Sleep(1500);
 	ItemCreator* creator = nullptr;
 	int x;
 	int y;
@@ -302,14 +318,14 @@ void Game::ItemMaker()
 		if (!_pause)
 		{
 			creator = Creator();
-			x = rand() % (_lvl->GetRow() - 2) + 1;
-			y = rand() % (_lvl->GetCol() - 2) + 1;
+			x = _random.Next(1, _lvl->GetRow() - 2);
+			y = _random.Next(1, _lvl->GetCol() - 2);
 			while (true)
 			{
 				if (!_lvl->IsRoad(x, y))
 				{
-					x = rand() % (_lvl->GetRow() - 2) + 1;
-					y = rand() % (_lvl->GetCol() - 2) + 1;
+					x = _random.Next(1, _lvl->GetRow() - 2);
+					y = _random.Next(1, _lvl->GetCol() - 2);
 					continue;
 				}
 				break;
