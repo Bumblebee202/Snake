@@ -40,12 +40,10 @@ void Help::Open()
 		if (btnCode == 224)
 			btnCode = _getch();
 
-		switch (btnCode)
+		if (btnCode == _button->GetEsc())
 		{
-		case 27:
 			_close = true;
 			Clear();
-			break;
 		}
 	}
 }

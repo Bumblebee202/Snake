@@ -117,7 +117,7 @@ void Snake::AddTail()
 	SnakePart* part = new SnakePart();
 	part->X = _tail->X;
 	part->Y = _tail->Y;
-	
+	/*
 	switch (_dir)
 	{
 	case Direction::Right:
@@ -134,7 +134,7 @@ void Snake::AddTail()
 		break;
 	default:
 		break;
-	}
+	}*/
 
 	part->Prev = _tail;
 	part->Next = nullptr;

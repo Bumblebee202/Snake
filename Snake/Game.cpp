@@ -15,6 +15,7 @@ Game::Game(IDisplay<wchar_t>* display) : BaseApp()
 	_snake = nullptr;
 	_display = display;
 	_menu = new Pause(this, display, _lvl->GetRow());
+	_button = Button::GetInstance();
 }
 
 Game::~Game()
@@ -43,33 +44,20 @@ void Game::KeyPressed(int btnCode)
 		btnCode = _getch();
 
 	Direction dir = _snake->GetDirection();
-	switch (btnCode)
-	{
-	case 97:
-	case 75:
+	if (btnCode == _button->GetLeft())
 		dir = _snake->GetDirection() != Direction::Right ? Direction::Left : dir;
-		break;
-
-	case 100:
-	case 77:
+	else if (btnCode == _button->GetRight())
 		dir = _snake->GetDirection() != Direction::Left ? Direction::Right : dir;
-		break;
-
-	case 119:
-	case 72:
+	else if (btnCode == _button->GetUp())
 		dir = _snake->GetDirection() != Direction::Down ? Direction::Up : dir;
-		break;
-
-	case 115:
-	case 80:
+	else if (btnCode == _button->GetDown())
 		dir = _snake->GetDirection() != Direction::Up ? Direction::Down : dir;
-		break;
-	case 27:
+	else if (btnCode == _button->GetEsc())
+	{
 		_pause = true;
 		_menu->Open();
 		ShowSnake();
 		_pause = false;
-		break;
 	}
 
 	_snake->SetDirection(dir);
@@ -97,9 +85,9 @@ void Game::Start()
 			sp = _getch();
 			if (sp == 224)
 				sp = _getch();
-			if (sp == 27)
+			if (sp == _button->GetEsc())
 				return;
-		} while (sp != 32);
+		} while (sp != _button->GetSpace());
 
 		_run = true;
 		_threadsRun = true;
@@ -182,7 +170,7 @@ void Game::Lose()
 		sp = _getch();
 		if (sp == 224)
 			sp = _getch();
-	} while (sp != 32);
+	} while (sp != _button->GetSpace());
 	_run = false;
 }
 
@@ -230,18 +218,6 @@ ItemCreator* Game::Creator()
 		return new SpeedDownCreator();
 	else if (value > 0.85f && value <= 1.0f)
 		return new SpeedUpCreator();
-	/*int value = rand() % 5;
-
-	if (value == 0)
-		return new AppleCreator();
-	else if (value == 1)
-		return new PearCreator();
-	else if (value == 2)
-		return new AmanitaCreator();
-	else if (value == 3)
-		return new SpeedDownCreaor();
-	else if (value == 4)
-		return new SpeedUpCreator();*/
 
 	return nullptr;
 }
@@ -279,9 +255,13 @@ void Game::SnakeMovement()
 
 						IEdible* item = _items[i];
 						item->Interaction(_snake);
-						tail = _snake->GetTail();
-						/*tail->X = oldX;
-						tail->Y = oldY;*/
+						if (_snake->GetSpeed() == 5)
+						{
+							tail = _snake->GetTail();
+							tail->X = oldX;
+							tail->Y = oldY;
+						}
+						
 						_score += item->GetScore();
 
 						int score = _lvl->GetToNextLvl() - item->GetScore();

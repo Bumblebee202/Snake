@@ -38,6 +38,7 @@
     <ClCompile Include="Other\Random.cpp" />
     <ClCompile Include="Other\Time.cpp" />
     <ClCompile Include="Other\Timer.cpp" />
+    <ClCompile Include="Settings\Button.cpp" />
     <ClCompile Include="Snakes\Snake.cpp" />
     <ClCompile Include="Snakes\State\MoveBase.cpp" />
     <ClCompile Include="Snakes\State\NormalMove.cpp" />
@@ -65,9 +66,11 @@
     <ClInclude Include="Items\Pear.h" />
     <ClInclude Include="Items\SpeedDown.h" />
     <ClInclude Include="Items\SpeedUp.h" />
+    <ClInclude Include="Levels.h" />
     <ClInclude Include="Levels\FirstLevel.h" />
     <ClInclude Include="Levels\LevelBase.h" />
     <ClInclude Include="Levels\SecondLevel.h" />
+    <ClInclude Include="Menus.h" />
     <ClInclude Include="Menus\Help.h" />
     <ClInclude Include="Menus\MainMenu.h" />
     <ClInclude Include="Menus\MenuBase.h" />
@@ -76,6 +79,8 @@
     <ClInclude Include="Other\ThreadSafeVector.h" />
     <ClInclude Include="Other\Time.h" />
     <ClInclude Include="Other\Timer.h" />
+    <ClInclude Include="Settings\Button.h" />
+    <ClInclude Include="Snakes.h" />
     <ClInclude Include="Snakes\Snake.h" />
     <ClInclude Include="Snakes\State\MoveBase.h" />
     <ClInclude Include="Snakes\State\NormalMove.h" />

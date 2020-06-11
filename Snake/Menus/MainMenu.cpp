@@ -68,21 +68,17 @@ void MainMenu::Open()
 		if (btnCode == 224)
 			btnCode = _getch();
 
-		switch (btnCode)
+		if (btnCode == _button->GetUp())
 		{
-		case 119:
-		case 72:
 			Up();
 			Show();
-			break;
-		case 115:
-		case 80:
+		}
+		else if (btnCode == _button->GetDown())
+		{
 			Down();
 			Show();
-			break;
-		case 13:
-			SelectMenuItem();
-			break;
 		}
+		else if (btnCode == _button->GetEnter())
+			SelectMenuItem();
 	}
 }

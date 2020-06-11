@@ -7,16 +7,12 @@
 #include "Other/Random.h"
 #include "BaseApp.h"
 #include "Header.h"
-#include "Menus/MenuBase.h"
-#include "Menus/MainMenu.h"
-#include "Menus/Pause.h"
-#include "Snakes/Snake.h"
-#include "Levels/LevelBase.h"
-#include "Levels/FirstLevel.h"
-#include "Levels/SecondLevel.h"
+#include "Menus.h"
+#include "Levels.h"
+#include "Snakes.h"
 #include "Display/ConsoleDisplay.h"
 #include "Creators.h"
-#include "Snakes/State/NormalMove.h"
+#include "Settings/Button.h"
 
 class Game : public BaseApp
 {
@@ -28,6 +24,7 @@ private:
 	int _score;
 	Time _time;
 	Time _totalTime;
+	Button* _button;
 	Random _random;
 	Snake* _snake;
 	LevelBase* _lvl;
@@ -53,4 +50,3 @@ public:
 	virtual void Start() override;
 	virtual void Stop() override;
 };
-

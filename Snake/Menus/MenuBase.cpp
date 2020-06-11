@@ -8,6 +8,7 @@ MenuBase::MenuBase()
 	_menu = nullptr;
 	_display = nullptr;
 	_width = -1;
+	_button = Button::GetInstance();
 }
 
 MenuBase::MenuBase(IDisplay<wchar_t>* display, int width)
@@ -18,6 +19,7 @@ MenuBase::MenuBase(IDisplay<wchar_t>* display, int width)
 	_selectedMenuItem = -1;
 	_length = 0;
 	_menu = nullptr;
+	_button = Button::GetInstance();
 }
 
 MenuBase::MenuBase(std::wstring* menu, int lenght, int width)
@@ -28,6 +30,7 @@ MenuBase::MenuBase(std::wstring* menu, int lenght, int width)
 	_length = lenght;
 	_selectedMenuItem = 0;
 	_display = nullptr;
+	_button = Button::GetInstance();
 }
 
 MenuBase::MenuBase(std::wstring* menu, int lenght, int selectedMenuItem, int width)
@@ -38,6 +41,7 @@ MenuBase::MenuBase(std::wstring* menu, int lenght, int selectedMenuItem, int wid
 	_length = lenght;
 	_selectedMenuItem = selectedMenuItem;
 	_display = nullptr;
+	_button = Button::GetInstance();
 }
 
 MenuBase::MenuBase(std::wstring* menu, int lenght, IDisplay<wchar_t>* display, int width)
@@ -48,6 +52,7 @@ MenuBase::MenuBase(std::wstring* menu, int lenght, IDisplay<wchar_t>* display, i
 	_length = lenght;
 	_selectedMenuItem = 0;
 	_display = display;
+	_button = Button::GetInstance();
 }
 
 MenuBase::MenuBase(std::wstring* menu, int lenght, int selectedMenuItem, IDisplay<wchar_t>* display, int width)
@@ -58,11 +63,13 @@ MenuBase::MenuBase(std::wstring* menu, int lenght, int selectedMenuItem, IDispla
 	_length = lenght;
 	_selectedMenuItem = selectedMenuItem;
 	_display = display;
+	_button = Button::GetInstance();
 }
 
 MenuBase::~MenuBase()
 {
 	delete[] _menu;
+	delete _button;
 }
 
 std::wstring* MenuBase::GetMenu() const
@@ -122,26 +129,23 @@ void MenuBase::Open()
 		if (btnCode == 224)
 			btnCode = _getch();
 
-		switch (btnCode)
+		if (btnCode == _button->GetUp())
 		{
-		case 119:
-		case 72:
 			Up();
 			Show();
-			break;
-		case 115:
-		case 80:
+		}
+		else if (btnCode == _button->GetDown())
+		{
 			Down();
 			Show();
-			break;
-		case 13:
+		}
+		else if (btnCode == _button->GetEnter())
 			SelectMenuItem();
-			break;
-		case 27: //esc
+		else if (btnCode == _button->GetEsc())
+		{
 			_selectedMenuItem = 0;
 			_close = true;
 			Clear();
-			break;
 		}
 	}
 }

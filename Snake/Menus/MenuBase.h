@@ -3,6 +3,7 @@
 #include <stdexcept>
 #include <string>
 #include "../Display/ConsoleDisplay.h"
+#include "../Settings/Button.h"
 
 class MenuBase
 {
@@ -13,6 +14,7 @@ protected:
 	int _length;
 	int _selectedMenuItem;
 	IDisplay<wchar_t>* _display;
+	Button* _button;
 
 	void virtual GenerateMenu() = 0;
 public:
