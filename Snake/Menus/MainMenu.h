@@ -14,6 +14,7 @@ protected:
 
 public:
 	MainMenu();
+	~MainMenu();
 
 	void virtual SelectMenuItem() override;
 	void virtual Open() override;

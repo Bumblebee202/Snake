@@ -5,7 +5,12 @@ class MoveBase;
 
 class NormalMove : public MoveBase
 {
-public:
+private:
+	static MoveBase* _singleton;
+
 	NormalMove(Snake* snake);
+public:
+	~NormalMove();
+	static MoveBase* GetInstance(Snake* snake);
 };
 

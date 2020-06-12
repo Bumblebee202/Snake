@@ -1,30 +1,30 @@
-#include "SpeedMove.h"
+#include "SlowMove.h"
 
-MoveBase* SpeedMove::_singleton = nullptr;
+MoveBase* SlowMove::_singleton = nullptr;
 
-SpeedMove::SpeedMove(Snake* snake) : MoveBase(snake)
+SlowMove::SlowMove(Snake* snake) : MoveBase(snake)
 {
-	SetSpeed(10);
-	_moves = 100;
+	SetSpeed(2);
+	_moves = 20;
 }
 
-SpeedMove::~SpeedMove()
+SlowMove::~SlowMove()
 {
 	_singleton = nullptr;
 }
 
-MoveBase* SpeedMove::GetInstance(Snake* snake)
+MoveBase* SlowMove::GetInstance(Snake* snake)
 {
 	if (_singleton == nullptr)
 	{
 		std::lock_guard<std::mutex> lock(_mutex);
 		if (_singleton == nullptr)
-			_singleton = new SpeedMove(snake);
+			_singleton = new SlowMove(snake);
 	}
 	return _singleton;
 }
 
-void SpeedMove::Move()
+void SlowMove::Move()
 {
 	MoveBase::Move();
 	_moves--;

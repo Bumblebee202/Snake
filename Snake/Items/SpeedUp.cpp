@@ -22,7 +22,6 @@ std::wstring SpeedUp::Description()
 
 void SpeedUp::Interaction(Snake* snake)
 {
-	delete snake->GetMoveState();
-	SpeedMove* state = new SpeedMove(snake);
+	MoveBase* state = SpeedMove::GetInstance(snake);
 	snake->SetMoveState(state);
 }

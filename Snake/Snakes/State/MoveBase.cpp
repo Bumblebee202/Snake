@@ -1,8 +1,14 @@
 #include "MoveBase.h"
 
+std::mutex MoveBase::_mutex;
+
 MoveBase::MoveBase(Snake* snake)
 {
 	_snake = snake;
+}
+
+MoveBase::~MoveBase()
+{
 }
 
 void MoveBase::Move(int x, int y)

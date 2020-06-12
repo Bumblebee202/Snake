@@ -2,16 +2,16 @@
 #include "MoveBase.h"
 #include "NormalMove.h"
 
-class SpeedMove : public MoveBase
+class SlowMove : public MoveBase
 {
 private:
 	int _moves;
 	static MoveBase* _singleton;
 
-	SpeedMove(Snake* snake);
+	SlowMove(Snake* snake);
 public:
-	~SpeedMove();
+	~SlowMove();
 	static MoveBase* GetInstance(Snake* snake);
-	void Move() override;
+	virtual void Move() override;
 };
 

@@ -12,6 +12,11 @@ MainMenu::MainMenu() : MenuBase()
 	GenerateMenu();
 }
 
+MainMenu::~MainMenu()
+{
+	delete _button;
+}
+
 void MainMenu::GenerateMenu()
 {
 	*_menu = L"Start";

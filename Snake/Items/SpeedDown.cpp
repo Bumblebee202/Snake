@@ -1,5 +1,5 @@
 #include "SpeedDown.h"
-#include "../Snakes/State/SlowSpeed.h"
+#include "../Snakes/State/SlowMove.h"
 
 SpeedDown::SpeedDown()
 {
@@ -22,7 +22,6 @@ std::wstring SpeedDown::Description()
 
 void SpeedDown::Interaction(Snake* snake)
 {
-	delete snake->GetMoveState();
-	SlowSpeed* slowSnake = new SlowSpeed(snake);
+	MoveBase* slowSnake = SlowMove::GetInstance(snake);
 	snake->SetMoveState(slowSnake);
 }

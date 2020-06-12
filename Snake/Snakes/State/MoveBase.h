@@ -1,5 +1,6 @@
 #pragma once
 #include "../Snake.h"
+#include <mutex>
 
 class Snake;
 
@@ -8,10 +9,13 @@ class MoveBase
 protected:
 	int _speed;
 	Snake* _snake;
+	static std::mutex _mutex;
+
+	MoveBase(Snake* snake);
 private:
 	void Move(int x, int y);
 public:
-	MoveBase(Snake* snake);
+	virtual ~MoveBase();
 
 	virtual void Move();
 

@@ -42,7 +42,7 @@
     <ClCompile Include="Snakes\Snake.cpp" />
     <ClCompile Include="Snakes\State\MoveBase.cpp" />
     <ClCompile Include="Snakes\State\NormalMove.cpp" />
-    <ClCompile Include="Snakes\State\SlowSpeed.cpp" />
+    <ClCompile Include="Snakes\State\SlowMove.cpp" />
     <ClCompile Include="Snakes\State\SpeedMove.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -84,7 +84,7 @@
     <ClInclude Include="Snakes\Snake.h" />
     <ClInclude Include="Snakes\State\MoveBase.h" />
     <ClInclude Include="Snakes\State\NormalMove.h" />
-    <ClInclude Include="Snakes\State\SlowSpeed.h" />
+    <ClInclude Include="Snakes\State\SlowMove.h" />
     <ClInclude Include="Snakes\State\SpeedMove.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

@@ -69,7 +69,6 @@ MenuBase::MenuBase(std::wstring* menu, int lenght, int selectedMenuItem, IDispla
 MenuBase::~MenuBase()
 {
 	delete[] _menu;
-	delete _button;
 }
 
 std::wstring* MenuBase::GetMenu() const

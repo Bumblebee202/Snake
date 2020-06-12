@@ -20,9 +20,7 @@ Button* Button::GetInstance()
 	{
 		std::lock_guard<std::mutex> lock(_mutex);
 		if (_singleton == nullptr)
-		{
 			_singleton = new Button();
-		}
 	}
 	return _singleton;
 }

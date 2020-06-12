@@ -1,5 +1,4 @@
 #pragma once
-#include <atomic>
 #include <cmath>
 #include <Windows.h>
 #include <thread>
@@ -12,19 +11,17 @@
 #include "Snakes.h"
 #include "Display/ConsoleDisplay.h"
 #include "Creators.h"
-#include "Settings/Button.h"
 
 class Game : public BaseApp
 {
 private:
-	bool _threadsRun;
-	bool _pause;
-	bool _exit;
+    std::atomic<bool> _threadsRun;
+	std::atomic<bool> _pause;
+	std::atomic<bool> _exit;
 	int _totalScore;
-	int _score;
+	//int _score;
 	Time _time;
 	Time _totalTime;
-	Button* _button;
 	Random _random;
 	Snake* _snake;
 	LevelBase* _lvl;
@@ -41,7 +38,7 @@ protected:
 	void NewLvl();
 	void Lose();
 	void ShowSnake();
-	void ShowScore();
+	void ShowScore(int score);
 	void ClearField();
 	ItemCreator* Creator();
 public:

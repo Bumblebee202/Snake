@@ -10,7 +10,6 @@ Game::Game(IDisplay<wchar_t>* display) : BaseApp()
 	_time = Time();
 	_totalTime = Time();
 	_random = Random();
-	_score = 0;
 	_totalScore = 0;
 	_snake = nullptr;
 	_display = display;
@@ -20,6 +19,10 @@ Game::Game(IDisplay<wchar_t>* display) : BaseApp()
 
 Game::~Game()
 {
+	delete NormalMove::GetInstance(_snake);
+	delete SlowMove::GetInstance(_snake);
+	delete SpeedMove::GetInstance(_snake);
+
 	if (_snake != nullptr)
 		delete _snake;
 	delete _lvl;
@@ -93,7 +96,7 @@ void Game::Start()
 		_threadsRun = true;
 
 		_snake = new Snake();
-		MoveBase* moveState = new NormalMove(_snake);
+		MoveBase* moveState = NormalMove::GetInstance(_snake);
 		_snake->SetMoveState(moveState);
 
 		_display->SetWidnowSize(_lvl->GetRow() + 25, _lvl->GetCol());
@@ -111,7 +114,7 @@ void Game::Start()
 		space = std::wstring(space.length(), L' ');
 		_display->ShowText(space, x, y);
 
-		ShowScore();
+		ShowScore(0);
 		ShowSnake();
 
 		std::thread snakeMovement = std::thread(&Game::SnakeMovement, this);
@@ -126,7 +129,6 @@ void Game::Start()
 
 		_totalTime.Add(_time);
 		_time.SetTime(0, 0, 0, 0.0f);
-		_score = 0;
 
 	} while (!_exit);
 }
@@ -186,10 +188,10 @@ void Game::ShowSnake()
 	}
 }
 
-void Game::ShowScore()
+void Game::ShowScore(int score)
 {
 	_display->ShowText(L"Score:    ", 65, 5);
-	_display->ShowNumber(_score, 72, 5);
+	_display->ShowNumber(score, 72, 5);
 
 	_display->ShowText(L"To next lvl:    ", 65, 7);
 	_display->ShowNumber(_lvl->GetToNextLvl(), 78, 7);
@@ -227,6 +229,7 @@ void Game::SnakeMovement()
 	int sleep;
 	int oldX;
 	int oldY;
+	int score = 0;
 	SnakePart* head = _snake->GetHead();
 	SnakePart* tail = _snake->GetTail();
 	while (_threadsRun)
@@ -262,11 +265,11 @@ void Game::SnakeMovement()
 							tail->Y = oldY;
 						}
 						
-						_score += item->GetScore();
+						score += item->GetScore();
 
-						int score = _lvl->GetToNextLvl() - item->GetScore();
-						_lvl->SetToNextLvl(score);
-						ShowScore();
+						int newToNextLvl = _lvl->GetToNextLvl() - item->GetScore();
+						_lvl->SetToNextLvl(newToNextLvl);
+						ShowScore(score);
 
 						_items.RemoveAt(i);
 						delete[] item;

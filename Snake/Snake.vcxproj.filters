@@ -105,17 +105,17 @@
     <ClCompile Include="Snakes\State\SpeedMove.cpp">
       <Filter>Snakes\State</Filter>
     </ClCompile>
-    <ClCompile Include="Snakes\State\NormalMove.cpp">
-      <Filter>Snakes\State</Filter>
-    </ClCompile>
-    <ClCompile Include="Snakes\State\SlowSpeed.cpp">
-      <Filter>Snakes\State</Filter>
-    </ClCompile>
     <ClCompile Include="Other\Random.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Settings\Button.cpp">
       <Filter>Settings</Filter>
+    </ClCompile>
+    <ClCompile Include="Snakes\State\NormalMove.cpp">
+      <Filter>Snakes\State</Filter>
+    </ClCompile>
+    <ClCompile Include="Snakes\State\SlowMove.cpp">
+      <Filter>Snakes\State</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -218,12 +218,6 @@
     <ClInclude Include="Snakes\State\SpeedMove.h">
       <Filter>Snakes\State</Filter>
     </ClInclude>
-    <ClInclude Include="Snakes\State\SlowSpeed.h">
-      <Filter>Snakes\State</Filter>
-    </ClInclude>
-    <ClInclude Include="Snakes\State\NormalMove.h">
-      <Filter>Snakes\State</Filter>
-    </ClInclude>
     <ClInclude Include="Other\Random.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -238,6 +232,12 @@
     </ClInclude>
     <ClInclude Include="Settings\Button.h">
       <Filter>Settings</Filter>
+    </ClInclude>
+    <ClInclude Include="Snakes\State\NormalMove.h">
+      <Filter>Snakes\State</Filter>
+    </ClInclude>
+    <ClInclude Include="Snakes\State\SlowMove.h">
+      <Filter>Snakes\State</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
