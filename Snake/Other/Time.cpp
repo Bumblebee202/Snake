@@ -108,7 +108,7 @@ std::wstring Time::ToString()
 {
 	std::wstring minute = std::to_wstring(_minute);
 	std::wstring second = std::to_wstring(_second);
-	std::wstring time = L"Time: ";
+	std::wstring time = std::wstring();
 	if (_hour > 0)
 	{
 		std::wstring hour = std::to_wstring(_hour);

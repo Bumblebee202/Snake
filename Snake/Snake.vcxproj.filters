@@ -40,15 +40,12 @@
     <Filter Include="Settings">
       <UniqueIdentifier>{d0fc8305-9e29-482f-9d5b-7861b2589824}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Game">
+      <UniqueIdentifier>{9f45ad53-6909-46fe-a4fd-bba266b71a9e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Game.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="BaseApp.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Snakes\Snake.cpp">
@@ -105,9 +102,6 @@
     <ClCompile Include="Snakes\State\SpeedMove.cpp">
       <Filter>Snakes\State</Filter>
     </ClCompile>
-    <ClCompile Include="Other\Random.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Settings\Button.cpp">
       <Filter>Settings</Filter>
     </ClCompile>
@@ -117,17 +111,17 @@
     <ClCompile Include="Snakes\State\SlowMove.cpp">
       <Filter>Snakes\State</Filter>
     </ClCompile>
+    <ClCompile Include="Other\Random.cpp">
+      <Filter>Other</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\BaseApp.cpp">
+      <Filter>Game</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Game.cpp">
+      <Filter>Game</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Game.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Header.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="BaseApp.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Snakes\Snake.h">
       <Filter>Snakes</Filter>
     </ClInclude>
@@ -145,9 +139,6 @@
     </ClInclude>
     <ClInclude Include="Menus\MainMenu.h">
       <Filter>Menus</Filter>
-    </ClInclude>
-    <ClInclude Include="Colors.h">
-      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Menus\Pause.h">
       <Filter>Menus</Filter>
@@ -169,9 +160,6 @@
     </ClInclude>
     <ClInclude Include="Items\SpeedDown.h">
       <Filter>Items</Filter>
-    </ClInclude>
-    <ClInclude Include="Creators.h">
-      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Menus\Help.h">
       <Filter>Menus</Filter>
@@ -218,18 +206,6 @@
     <ClInclude Include="Snakes\State\SpeedMove.h">
       <Filter>Snakes\State</Filter>
     </ClInclude>
-    <ClInclude Include="Other\Random.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Menus.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Levels.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Snakes.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Settings\Button.h">
       <Filter>Settings</Filter>
     </ClInclude>
@@ -238,6 +214,33 @@
     </ClInclude>
     <ClInclude Include="Snakes\State\SlowMove.h">
       <Filter>Snakes\State</Filter>
+    </ClInclude>
+    <ClInclude Include="Headers\Colors.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Headers\Creators.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Headers\Header.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Headers\Levels.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Headers\Menus.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Other\Random.h">
+      <Filter>Other</Filter>
+    </ClInclude>
+    <ClInclude Include="Headers\Snakes.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\BaseApp.h">
+      <Filter>Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Game.h">
+      <Filter>Game</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

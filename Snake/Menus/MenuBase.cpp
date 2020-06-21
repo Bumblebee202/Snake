@@ -128,19 +128,19 @@ void MenuBase::Open()
 		if (btnCode == 224)
 			btnCode = _getch();
 
-		if (btnCode == _button->GetUp())
+		if (_button->IsUp(btnCode))
 		{
 			Up();
 			Show();
 		}
-		else if (btnCode == _button->GetDown())
+		else if (_button->IsDown(btnCode))
 		{
 			Down();
 			Show();
 		}
-		else if (btnCode == _button->GetEnter())
+		else if (_button->IsEnter(btnCode))
 			SelectMenuItem();
-		else if (btnCode == _button->GetEsc())
+		else if (_button->IsEsc(btnCode))
 		{
 			_selectedMenuItem = 0;
 			_close = true;

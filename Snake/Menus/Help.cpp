@@ -40,7 +40,7 @@ void Help::Open()
 		if (btnCode == 224)
 			btnCode = _getch();
 
-		if (btnCode == _button->GetEsc())
+		if (_button->IsEsc(btnCode))
 		{
 			_close = true;
 			Clear();

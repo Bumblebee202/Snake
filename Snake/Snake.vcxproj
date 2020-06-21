@@ -19,8 +19,8 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="BaseApp.cpp" />
-    <ClCompile Include="Game.cpp" />
+    <ClCompile Include="Game\BaseApp.cpp" />
+    <ClCompile Include="Game\Game.cpp" />
     <ClCompile Include="Items\Amanita.cpp" />
     <ClCompile Include="Items\Apple.cpp" />
     <ClCompile Include="Items\ItemBase.cpp" />
@@ -46,13 +46,16 @@
     <ClCompile Include="Snakes\State\SpeedMove.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="BaseApp.h" />
-    <ClInclude Include="Colors.h" />
-    <ClInclude Include="Creators.h" />
     <ClInclude Include="Display\ConsoleDisplay.h" />
     <ClInclude Include="Display\IDisplay.h" />
-    <ClInclude Include="Game.h" />
-    <ClInclude Include="Header.h" />
+    <ClInclude Include="Game\BaseApp.h" />
+    <ClInclude Include="Game\Game.h" />
+    <ClInclude Include="Headers\Colors.h" />
+    <ClInclude Include="Headers\Creators.h" />
+    <ClInclude Include="Headers\Header.h" />
+    <ClInclude Include="Headers\Levels.h" />
+    <ClInclude Include="Headers\Menus.h" />
+    <ClInclude Include="Headers\Snakes.h" />
     <ClInclude Include="Items\Amanita.h" />
     <ClInclude Include="Items\Apple.h" />
     <ClInclude Include="Items\FactoryMethod\AmanitaCreator.h" />
@@ -66,11 +69,9 @@
     <ClInclude Include="Items\Pear.h" />
     <ClInclude Include="Items\SpeedDown.h" />
     <ClInclude Include="Items\SpeedUp.h" />
-    <ClInclude Include="Levels.h" />
     <ClInclude Include="Levels\FirstLevel.h" />
     <ClInclude Include="Levels\LevelBase.h" />
     <ClInclude Include="Levels\SecondLevel.h" />
-    <ClInclude Include="Menus.h" />
     <ClInclude Include="Menus\Help.h" />
     <ClInclude Include="Menus\MainMenu.h" />
     <ClInclude Include="Menus\MenuBase.h" />
@@ -80,7 +81,6 @@
     <ClInclude Include="Other\Time.h" />
     <ClInclude Include="Other\Timer.h" />
     <ClInclude Include="Settings\Button.h" />
-    <ClInclude Include="Snakes.h" />
     <ClInclude Include="Snakes\Snake.h" />
     <ClInclude Include="Snakes\State\MoveBase.h" />
     <ClInclude Include="Snakes\State\NormalMove.h" />

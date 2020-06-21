@@ -1,6 +1,6 @@
 #pragma once
 #include "MenuBase.h"
-#include "../BaseApp.h"
+#include "../Game/BaseApp.h"
 
 class Pause : public MenuBase
 {
