@@ -12,6 +12,7 @@ Button::Button()
 	_esc = 27;
 	_enter = 13;
 	_space = 32;
+	_backspace = 8;
 }
 
 Button* Button::GetInstance()
@@ -78,4 +79,49 @@ int Button::GetEsc() const
 int Button::GetSpace() const
 {
 	return _space;
+}
+
+int Button::GetBackspace() const
+{
+	return _backspace;
+}
+
+bool Button::IsUp(int key) const
+{
+	return _up == key ? true : false;
+}
+
+bool Button::IsDown(int key) const
+{
+	return _down == key ? true : false;
+}
+
+bool Button::IsLeft(int key) const
+{
+	return _left == key ? true : false;
+}
+
+bool Button::IsRight(int key) const
+{
+	return _right == key ? true : false;
+}
+
+bool Button::IsEnter(int key) const
+{
+	return _enter == key ? true : false;
+}
+
+bool Button::IsEsc(int key) const
+{
+	return _esc == key ? true : false;
+}
+
+bool Button::IsSpace(int key) const
+{
+	return _space == key ? true : false;
+}
+
+bool Button::IsBackspace(int key) const
+{
+	return _backspace == key ? true : false;
 }
