@@ -2,15 +2,15 @@
 #include <cmath>
 #include <Windows.h>
 #include <thread>
-#include "Other/ThreadSafeVector.h"
-#include "Other/Random.h"
+#include "../Other/ThreadSafeVector.h"
+#include "../Other/Random.h"
 #include "BaseApp.h"
-#include "Header.h"
-#include "Menus.h"
-#include "Levels.h"
-#include "Snakes.h"
-#include "Display/ConsoleDisplay.h"
-#include "Creators.h"
+#include "../Headers/Header.h"
+#include "../Headers/Menus.h"
+#include "../Headers/Levels.h"
+#include "../Headers/Snakes.h"
+#include "../Display/ConsoleDisplay.h"
+#include "../Headers/Creators.h"
 
 class Game : public BaseApp
 {
@@ -19,7 +19,6 @@ private:
 	std::atomic<bool> _pause;
 	std::atomic<bool> _exit;
 	int _totalScore;
-	//int _score;
 	Time _time;
 	Time _totalTime;
 	Random _random;

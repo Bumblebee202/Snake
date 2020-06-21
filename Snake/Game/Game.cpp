@@ -47,15 +47,15 @@ void Game::KeyPressed(int btnCode)
 		btnCode = _getch();
 
 	Direction dir = _snake->GetDirection();
-	if (btnCode == _button->GetLeft())
+	if (_button->IsLeft(btnCode))
 		dir = _snake->GetDirection() != Direction::Right ? Direction::Left : dir;
-	else if (btnCode == _button->GetRight())
+	else if (_button->IsRight(btnCode))
 		dir = _snake->GetDirection() != Direction::Left ? Direction::Right : dir;
-	else if (btnCode == _button->GetUp())
+	else if (_button->IsUp(btnCode))
 		dir = _snake->GetDirection() != Direction::Down ? Direction::Up : dir;
-	else if (btnCode == _button->GetDown())
+	else if (_button->IsDown(btnCode))
 		dir = _snake->GetDirection() != Direction::Up ? Direction::Down : dir;
-	else if (btnCode == _button->GetEsc())
+	else if (_button->IsEsc(btnCode))
 	{
 		_pause = true;
 		_menu->Open();
@@ -68,7 +68,7 @@ void Game::KeyPressed(int btnCode)
 
 void Game::Start()
 {
-	int sp;
+	int btnCode;
 	int x;
 	int y;
 	do
@@ -85,12 +85,12 @@ void Game::Start()
 
 		do
 		{
-			sp = _getch();
-			if (sp == 224)
-				sp = _getch();
-			if (sp == _button->GetEsc())
+			btnCode = _getch();
+			if (btnCode == 224)
+				btnCode = _getch();
+			if (_button->IsEsc(btnCode))
 				return;
-		} while (sp != _button->GetSpace());
+		} while (!_button->IsSpace(btnCode));
 
 		_run = true;
 		_threadsRun = true;
@@ -156,23 +156,37 @@ void Game::Lose()
 	_exit = true;
 
 	_threadsRun = false;
+	_totalTime.Add(_time);
+
 	std::wstring str = L"You lose";
 	int x = (_lvl->GetRow() - str.length()) / 2;
 	int y = _lvl->GetCol() / 3;
 	_display->ShowText(str, x, y);
-
-	str = L"Press space to continue";
+	str = L"Total score: " + std::to_wstring(_totalScore);
 	x = (_lvl->GetRow() - str.length()) / 2;
 	y++;
 	_display->ShowText(str, x, y);
+	str = L"Total time: " + _totalTime.ToString();
+	y++;
+	_display->ShowText(str, x, y);
+	str = L"Enter your name: ";
+	x = (_lvl->GetRow() - (str.length() + 10)) / 2;
+	y++;
+	_display->ShowText(str, x, y);
+	_display->EnterText(x + str.length(), y);
 
-	int sp;
+	/*str = L"Press space to continue";
+	x = (_lvl->GetRow() - str.length()) / 2;
+	y++;
+	_display->ShowText(str, x, y);*/
+
+	/*int sp;
 	do
 	{
 		sp = _getch();
 		if (sp == 224)
 			sp = _getch();
-	} while (sp != _button->GetSpace());
+	} while (_button->IsSpace(sp));*/
 	_run = false;
 }
 
@@ -255,7 +269,6 @@ void Game::SnakeMovement()
 				{
 					if (_items[i]->GetX() == head->X && _items[i]->GetY() == head->Y)
 					{
-
 						IEdible* item = _items[i];
 						item->Interaction(_snake);
 						if (_snake->GetSpeed() == 5)
@@ -266,6 +279,7 @@ void Game::SnakeMovement()
 						}
 						
 						score += item->GetScore();
+						_totalScore += item->GetScore();
 
 						int newToNextLvl = _lvl->GetToNextLvl() - item->GetScore();
 						_lvl->SetToNextLvl(newToNextLvl);
@@ -288,6 +302,7 @@ void Game::SnakeMovement()
 			Sleep(sleep);
 		}
 	}
+	
 }
 
 void Game::ItemMaker()

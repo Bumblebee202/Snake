@@ -2,8 +2,8 @@
 #include <strsafe.h>
 #include <conio.h>
 #include <atomic>
-#include "Other/Timer.h"
-#include "Settings/Button.h"
+#include "../Other/Timer.h"
+#include "../Settings/Button.h"
 
 class BaseApp
 {
