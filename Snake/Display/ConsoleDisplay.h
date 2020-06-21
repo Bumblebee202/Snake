@@ -4,15 +4,20 @@
 //#define _WIN32_WINNT 0x0500
 #include <Windows.h>
 #include "IDisplay.h"
+#include "../Settings//Button.h"
 
-template<typename T>
+template<typename T = wchar_t>
 class ConsoleDisplay : public IDisplay<T>
 {
 private:
+	Button* _button;
 	std::mutex _mutex;
 	HANDLE _handle;
 	COORD _cursorCoord;
 	CONSOLE_CURSOR_INFO _cursorInfo;
+
+	void SetCursorPosition(int x, int y);
+	void VisibleCursor(bool value = true);
 public:
 	ConsoleDisplay();
 	~ConsoleDisplay();
@@ -28,15 +33,18 @@ public:
 	void ShowNumber(int value, int x = 0, int y = 0) override;
 	void ShowNumber(float value, int x = 0, int y = 0) override;
 	void ShowSymbol(wchar_t value, int x = 0, int y = 0) override;
+	std::wstring EnterText(int x = 0, int y = 0, int maxLen = 10) override;
 };
 
 template<typename T>
 ConsoleDisplay<T>::ConsoleDisplay() : IDisplay<T>()
 {
+	_button = Button::GetInstance();
+
 	_handle = GetStdHandle(STD_OUTPUT_HANDLE);
 	_cursorCoord.X = 25;
 	_cursorCoord.Y = 40;
-	
+
 	_cursorInfo.bVisible = false;
 	_cursorInfo.dwSize = 100;
 	SetConsoleCursorInfo(_handle, &_cursorInfo);
@@ -48,16 +56,29 @@ ConsoleDisplay<T>::~ConsoleDisplay()
 	delete _handle;
 }
 
+template<typename T>
+inline void ConsoleDisplay<T>::SetCursorPosition(int x, int y)
+{
+	_cursorCoord.X = x;
+	_cursorCoord.Y = y;
+	SetConsoleCursorPosition(_handle, _cursorCoord);
+}
 
+template<typename T>
+inline void ConsoleDisplay<T>::VisibleCursor(bool value)
+{
+	_cursorInfo.bVisible = value;
+	SetConsoleCursorInfo(_handle, &_cursorInfo);
+}
 
 template<typename T>
 inline void ConsoleDisplay<T>::SetWidnowSize(int x, int y)
 {
 	_mutex.lock();
 	std::string str = std::string("mode con: lines=")
-						.append(std::to_string(y))
-						.append(" cols=")
-						.append(std::to_string(x));
+		.append(std::to_string(y))
+		.append(" cols=")
+		.append(std::to_string(x));
 	system(str.c_str());
 	_mutex.unlock();
 }
@@ -76,9 +97,7 @@ template<typename T>
 inline void ConsoleDisplay<T>::ShowObject(T obj, int x, int y)
 {
 	_mutex.lock();
-	_cursorCoord.X = x;
-	_cursorCoord.Y = y;
-	SetConsoleCursorPosition(_handle, _cursorCoord);
+	SetCursorPosition(x, y);
 	std::wcout << obj;
 	_mutex.unlock();
 }
@@ -87,8 +106,7 @@ template<typename T>
 inline void ConsoleDisplay<T>::ShowObjects(T* objs, int len, int startX, int startY)
 {
 	_mutex.lock();
-	_cursorCoord.X = startX;
-	_cursorCoord.Y = startY;
+	SetCursorPosition(startX, startY);
 
 	for (int i = 0; i < len; i++)
 	{
@@ -104,10 +122,9 @@ template<typename T>
 inline void ConsoleDisplay<T>::ShowObjects(T** objs, int row, int col, int startX, int startY)
 {
 	_mutex.lock();
-	_cursorCoord.X = startX;
-	_cursorCoord.Y = startY;
+	SetCursorPosition(startX, startY);
 
-	/*for (int i = 0; i < row; i++)
+	for (int i = 0; i < row; i++)
 	{
 		for (int j = 0; j < col; j++)
 		{
@@ -117,19 +134,8 @@ inline void ConsoleDisplay<T>::ShowObjects(T** objs, int row, int col, int start
 		}
 		_cursorCoord.X++;
 		_cursorCoord.Y = startY;
-	}*/
-
-	for (int i = 0; i < col; i++)
-	{
-		for (int j = 0; j < row; j++)
-		{
-			SetConsoleCursorPosition(_handle, _cursorCoord);
-			std::wcout << *(*(objs + j) + i);
-			_cursorCoord.X++;
-		}
-		_cursorCoord.Y++;
-		_cursorCoord.X = startX;
 	}
+
 	_mutex.unlock();
 }
 
@@ -137,9 +143,7 @@ template<typename T>
 inline void ConsoleDisplay<T>::ShowText(wchar_t* text, int startX, int startY)
 {
 	_mutex.lock();
-	_cursorCoord.X = startX;
-	_cursorCoord.Y = startY;
-	SetConsoleCursorPosition(_handle, _cursorCoord);
+	SetCursorPosition(startX, startY);
 	std::wcout << text;
 	_mutex.unlock();
 }
@@ -148,9 +152,7 @@ template<typename T>
 inline void ConsoleDisplay<T>::ShowText(std::wstring text, int startX, int startY)
 {
 	_mutex.lock();
-	_cursorCoord.X = startX;
-	_cursorCoord.Y = startY;
-	SetConsoleCursorPosition(_handle, _cursorCoord);
+	SetCursorPosition(startX, startY);
 	std::wcout << text;
 	_mutex.unlock();
 }
@@ -159,9 +161,7 @@ template<typename T>
 inline void ConsoleDisplay<T>::ShowTime(Time& time, int x, int y)
 {
 	_mutex.lock();
-	_cursorCoord.X = x;
-	_cursorCoord.Y = y;
-	SetConsoleCursorPosition(_handle, _cursorCoord);
+	SetCursorPosition(x, y);
 	std::wcout << L"Time: ";
 	if (time.Hour() > 0)
 		std::wcout << time.Hour() << L":";
@@ -173,9 +173,7 @@ template<typename T>
 inline void ConsoleDisplay<T>::ShowNumber(int value, int x, int y)
 {
 	_mutex.lock();
-	_cursorCoord.X = x;
-	_cursorCoord.Y = y;
-	SetConsoleCursorPosition(_handle, _cursorCoord);
+	SetCursorPosition(x, y);
 	std::wcout << value;
 	_mutex.unlock();
 }
@@ -184,9 +182,7 @@ template<typename T>
 inline void ConsoleDisplay<T>::ShowNumber(float value, int x, int y)
 {
 	_mutex.lock();
-	_cursorCoord.X = x;
-	_cursorCoord.Y = y;
-	SetConsoleCursorPosition(_handle, _cursorCoord);
+	SetCursorPosition(x, y);
 	std::wcout << value;
 	_mutex.unlock();
 }
@@ -195,9 +191,97 @@ template<typename T>
 inline void ConsoleDisplay<T>::ShowSymbol(wchar_t value, int x, int y)
 {
 	_mutex.lock();
-	_cursorCoord.X = x;
-	_cursorCoord.Y = y;
-	SetConsoleCursorPosition(_handle, _cursorCoord);
+	SetCursorPosition(x, y);
 	std::wcout << value;
 	_mutex.unlock();
+}
+
+template<typename T>
+inline std::wstring ConsoleDisplay<T>::EnterText(int x, int y, int maxLen)
+{
+	_mutex.lock();
+	VisibleCursor();
+	SetCursorPosition(x, y);
+
+	int newX = x;
+	std::wstring str = std::wstring();
+	std::wstring empty;
+
+	int index = 0;
+	while (true)
+	{
+		wchar_t symbol = _getwch();
+
+		if (_button->IsEnter(symbol))
+			break;
+
+		if (symbol == 224)
+		{
+			symbol = _getwch();
+
+			if (_button->IsLeft(symbol))
+			{
+				if (x + index > x)
+				{
+					newX--;
+					index--;
+					SetCursorPosition(newX, y);
+				}
+				continue;
+			}
+			else if (_button->IsRight(symbol))
+			{
+				if (index < str.length() && index < maxLen - 1)
+				{
+					newX++;
+					index++;
+					SetCursorPosition(newX, y);
+				}
+				continue;
+			}
+			else if (_button->IsEsc(symbol) || _button->IsUp(symbol) || _button->IsDown(symbol))
+				continue;
+		}
+
+		if (_button->IsBackspace(symbol))
+		{
+			if (str.length() > 0)
+			{
+				empty = std::wstring(str.length(), L' ');
+				SetCursorPosition(x, y);
+				std::wcout << empty;
+
+				str.erase(str.begin() + index);
+				newX = x < newX ? --newX : newX;
+				index = index > 0 ? --index : index;
+			}
+		}
+		else if (index == str.length() && str.length() < maxLen)
+		{
+			str.insert(str.begin() + index, symbol);
+			index = index < maxLen - 1 ? ++index : index;
+			newX = str.length() < maxLen ? ++newX : newX;
+		}
+		else if (str.length() == maxLen)
+		{
+			str[index] = symbol;
+		}
+		else
+		{
+			str[index] = symbol;
+			index = index < maxLen ? ++index : index;
+			newX = str.length() < maxLen ? ++newX : newX;
+		}
+
+		VisibleCursor(false);
+		SetCursorPosition(x, y);
+		std::wcout << str;
+		SetCursorPosition(newX, y);
+		VisibleCursor();
+	}
+
+	VisibleCursor(false);
+
+	_mutex.unlock();
+	return str;
 }
