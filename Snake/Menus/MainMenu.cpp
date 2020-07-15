@@ -14,7 +14,7 @@ MainMenu::MainMenu() : MenuBase()
 
 MainMenu::~MainMenu()
 {
-	delete _button;
+	delete _buttons;
 }
 
 void MainMenu::GenerateMenu()
@@ -68,17 +68,17 @@ void MainMenu::Open()
 		if (btnCode == 224)
 			btnCode = _getch();
 
-		if (_button->IsUp(btnCode))
+		if (_buttons->IsUp(btnCode))
 		{
 			Up();
 			Show();
 		}
-		else if (_button->IsDown(btnCode))
+		else if (_buttons->IsDown(btnCode))
 		{
 			Down();
 			Show();
 		}
-		else if (_button->IsEnter(btnCode))
+		else if (_buttons->IsEnter(btnCode))
 			SelectMenuItem();
 	}
 }

@@ -3,7 +3,7 @@
 #include <conio.h>
 #include <atomic>
 #include "../Other/Timer.h"
-#include "../Settings/Button.h"
+#include "../Settings/Buttons.h"
 
 class BaseApp
 {
@@ -12,7 +12,7 @@ private:
 	Timer _timer;
 protected:
 	std::atomic<bool> _run;
-	Button* _button;
+	Buttons* _buttons;
 
 	virtual void Update(float deltaTime) = 0;
 	virtual void KeyPressed(int btnCode) = 0;

@@ -28,7 +28,7 @@ void RatingMenu::Open()
 		if (btnCode == 224)
 			btnCode = _getch();
 
-		if (_button->IsEsc(btnCode))
+		if (_buttons->IsEsc(btnCode))
 		{
 			_close = true;
 			Clear();

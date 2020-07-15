@@ -2,7 +2,6 @@
 #include <vector>
 #include <string>
 #include "MenuBase.h"
-#include "../Settings/Button.h"
 #include "../Database/SQLite.h"
 #include "../Other/Rating.h"
 

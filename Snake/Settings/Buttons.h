@@ -1,7 +1,7 @@
 #pragma once
 #include <mutex>
 
-class Button
+class Buttons
 {
 private:
 	int _up;
@@ -14,11 +14,12 @@ private:
 	int _backspace;
 
 	static std::mutex _mutex;
-	static Button* _singleton;
+	static Buttons* _singleton;
 
-	Button();
+	Buttons();
 public:
-	static Button* GetInstance();
+	static Buttons* GetInstance();
+	~Buttons();
 
 	void SetUp(int value);
 	int GetUp() const;
@@ -42,6 +43,6 @@ public:
 	bool IsSpace(int key) const;
 	bool IsBackspace(int key) const;
 
-	Button(Button& s) = delete;
-	void operator=(const Button& s) = delete;
+	Buttons(Buttons& s) = delete;
+	void operator=(const Buttons& s) = delete;
 };

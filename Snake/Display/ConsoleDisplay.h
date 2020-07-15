@@ -4,13 +4,13 @@
 //#define _WIN32_WINNT 0x0500
 #include <Windows.h>
 #include "IDisplay.h"
-#include "../Settings//Button.h"
+#include "../Settings//Buttons.h"
 
 template<typename T = wchar_t>
 class ConsoleDisplay : public IDisplay<T>
 {
 private:
-	Button* _button;
+	Buttons* _buttons;
 	std::mutex _mutex;
 	HANDLE _handle;
 	COORD _cursorCoord;
@@ -40,7 +40,7 @@ public:
 template<typename T>
 ConsoleDisplay<T>::ConsoleDisplay() : IDisplay<T>()
 {
-	_button = Button::GetInstance();
+	_buttons = Buttons::GetInstance();
 
 	_handle = GetStdHandle(STD_OUTPUT_HANDLE);
 	_cursorCoord.X = 25;
@@ -213,18 +213,18 @@ inline std::wstring ConsoleDisplay<T>::EnterText(int x, int y, int maxLen)
 	{
 		wchar_t symbol = _getwch();
 
-		if (_button->IsEnter(symbol) && str.length() > 0)
+		if (_buttons->IsEnter(symbol) && str.length() > 0)
 			break;
-		else if (_button->IsEnter(symbol))
+		else if (_buttons->IsEnter(symbol))
 			continue;
-		else if (_button->IsEsc(symbol))
+		else if (_buttons->IsEsc(symbol))
 			continue;
 
 		if (symbol == 224)
 		{
 			symbol = _getwch();
 
-			if (_button->IsLeft(symbol))
+			if (_buttons->IsLeft(symbol))
 			{
 				if (x + index > x)
 				{
@@ -234,7 +234,7 @@ inline std::wstring ConsoleDisplay<T>::EnterText(int x, int y, int maxLen)
 				}
 				continue;
 			}
-			else if (_button->IsRight(symbol))
+			else if (_buttons->IsRight(symbol))
 			{
 				if (index < str.length() && index < maxLen - 1)
 				{
@@ -244,11 +244,11 @@ inline std::wstring ConsoleDisplay<T>::EnterText(int x, int y, int maxLen)
 				}
 				continue;
 			}
-			else if (_button->IsUp(symbol) || _button->IsDown(symbol))
+			else if (_buttons->IsUp(symbol) || _buttons->IsDown(symbol))
 				continue;
 		}
 
-		if (_button->IsBackspace(symbol))
+		if (_buttons->IsBackspace(symbol))
 		{
 			if (str.length() > 0)
 			{

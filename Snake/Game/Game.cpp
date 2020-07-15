@@ -14,7 +14,7 @@ Game::Game(IDisplay<wchar_t>* display) : BaseApp()
 	_snake = nullptr;
 	_display = display;
 	_menu = new Pause(this, display, _lvl->GetRow());
-	_button = Button::GetInstance();
+	_buttons = Buttons::GetInstance();
 	_sqlite = SQLite::GetInstance();
 }
 
@@ -52,15 +52,15 @@ void Game::KeyPressed(int btnCode)
 		_newDirection = false;
 
 		Direction dir = _snake->GetDirection();
-		if (_button->IsLeft(btnCode))
+		if (_buttons->IsLeft(btnCode))
 			dir = _snake->GetDirection() != Direction::Right ? Direction::Left : dir;
-		else if (_button->IsRight(btnCode))
+		else if (_buttons->IsRight(btnCode))
 			dir = _snake->GetDirection() != Direction::Left ? Direction::Right : dir;
-		else if (_button->IsUp(btnCode))
+		else if (_buttons->IsUp(btnCode))
 			dir = _snake->GetDirection() != Direction::Down ? Direction::Up : dir;
-		else if (_button->IsDown(btnCode))
+		else if (_buttons->IsDown(btnCode))
 			dir = _snake->GetDirection() != Direction::Up ? Direction::Down : dir;
-		else if (_button->IsEsc(btnCode))
+		else if (_buttons->IsEsc(btnCode))
 		{
 			_pause = true;
 			_menu->Open();
@@ -94,9 +94,9 @@ void Game::Start()
 			btnCode = _getch();
 			if (btnCode == 224)
 				btnCode = _getch();
-			if (_button->IsEsc(btnCode))
+			if (_buttons->IsEsc(btnCode))
 				return;
-		} while (!_button->IsSpace(btnCode));
+		} while (!_buttons->IsSpace(btnCode));
 
 		_run = true;
 		_threadsRun = true;

@@ -43,7 +43,7 @@
     <ClCompile Include="Other\Rating.cpp" />
     <ClCompile Include="Other\Time.cpp" />
     <ClCompile Include="Other\Timer.cpp" />
-    <ClCompile Include="Settings\Button.cpp" />
+    <ClCompile Include="Settings\Buttons.cpp" />
     <ClCompile Include="Snakes\Snake.cpp" />
     <ClCompile Include="Snakes\State\MoveBase.cpp" />
     <ClCompile Include="Snakes\State\NormalMove.cpp" />
@@ -91,7 +91,7 @@
     <ClInclude Include="Other\Time.h" />
     <ClInclude Include="Other\Timer.h" />
     <ClInclude Include="resource.h" />
-    <ClInclude Include="Settings\Button.h" />
+    <ClInclude Include="Settings\Buttons.h" />
     <ClInclude Include="Snakes\Snake.h" />
     <ClInclude Include="Snakes\State\MoveBase.h" />
     <ClInclude Include="Snakes\State\NormalMove.h" />

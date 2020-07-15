@@ -26,6 +26,7 @@ bool SQLite::DatabaseIsExist()
 SQLite::~SQLite()
 {
 	sqlite3_close(_db);
+	_singleton = nullptr;
 }
 
 SQLite* SQLite::GetInstance()

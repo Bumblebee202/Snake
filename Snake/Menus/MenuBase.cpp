@@ -8,7 +8,7 @@ MenuBase::MenuBase()
 	_menu = nullptr;
 	_display = nullptr;
 	_width = -1;
-	_button = Button::GetInstance();
+	_buttons = Buttons::GetInstance();
 }
 
 MenuBase::MenuBase(IDisplay<wchar_t>* display, int width)
@@ -19,7 +19,7 @@ MenuBase::MenuBase(IDisplay<wchar_t>* display, int width)
 	_selectedMenuItem = -1;
 	_length = 0;
 	_menu = nullptr;
-	_button = Button::GetInstance();
+	_buttons = Buttons::GetInstance();
 }
 
 MenuBase::MenuBase(std::wstring* menu, int lenght, int width)
@@ -30,7 +30,7 @@ MenuBase::MenuBase(std::wstring* menu, int lenght, int width)
 	_length = lenght;
 	_selectedMenuItem = 0;
 	_display = nullptr;
-	_button = Button::GetInstance();
+	_buttons = Buttons::GetInstance();
 }
 
 MenuBase::MenuBase(std::wstring* menu, int lenght, int selectedMenuItem, int width)
@@ -41,7 +41,7 @@ MenuBase::MenuBase(std::wstring* menu, int lenght, int selectedMenuItem, int wid
 	_length = lenght;
 	_selectedMenuItem = selectedMenuItem;
 	_display = nullptr;
-	_button = Button::GetInstance();
+	_buttons = Buttons::GetInstance();
 }
 
 MenuBase::MenuBase(std::wstring* menu, int lenght, IDisplay<wchar_t>* display, int width)
@@ -52,7 +52,7 @@ MenuBase::MenuBase(std::wstring* menu, int lenght, IDisplay<wchar_t>* display, i
 	_length = lenght;
 	_selectedMenuItem = 0;
 	_display = display;
-	_button = Button::GetInstance();
+	_buttons = Buttons::GetInstance();
 }
 
 MenuBase::MenuBase(std::wstring* menu, int lenght, int selectedMenuItem, IDisplay<wchar_t>* display, int width)
@@ -63,7 +63,7 @@ MenuBase::MenuBase(std::wstring* menu, int lenght, int selectedMenuItem, IDispla
 	_length = lenght;
 	_selectedMenuItem = selectedMenuItem;
 	_display = display;
-	_button = Button::GetInstance();
+	_buttons = Buttons::GetInstance();
 }
 
 MenuBase::~MenuBase()
@@ -128,19 +128,19 @@ void MenuBase::Open()
 		if (btnCode == 224)
 			btnCode = _getch();
 
-		if (_button->IsUp(btnCode))
+		if (_buttons->IsUp(btnCode))
 		{
 			Up();
 			Show();
 		}
-		else if (_button->IsDown(btnCode))
+		else if (_buttons->IsDown(btnCode))
 		{
 			Down();
 			Show();
 		}
-		else if (_button->IsEnter(btnCode))
+		else if (_buttons->IsEnter(btnCode))
 			SelectMenuItem();
-		else if (_button->IsEsc(btnCode))
+		else if (_buttons->IsEsc(btnCode))
 		{
 			_selectedMenuItem = 0;
 			_close = true;

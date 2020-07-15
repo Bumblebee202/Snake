@@ -108,9 +108,6 @@
     <ClCompile Include="Snakes\State\SpeedMove.cpp">
       <Filter>Snakes\State</Filter>
     </ClCompile>
-    <ClCompile Include="Settings\Button.cpp">
-      <Filter>Settings</Filter>
-    </ClCompile>
     <ClCompile Include="Snakes\State\NormalMove.cpp">
       <Filter>Snakes\State</Filter>
     </ClCompile>
@@ -140,6 +137,9 @@
     </ClCompile>
     <ClCompile Include="Levels\ThirdLevel.cpp">
       <Filter>Levels</Filter>
+    </ClCompile>
+    <ClCompile Include="Settings\Buttons.cpp">
+      <Filter>Settings</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -227,9 +227,6 @@
     <ClInclude Include="Snakes\State\SpeedMove.h">
       <Filter>Snakes\State</Filter>
     </ClInclude>
-    <ClInclude Include="Settings\Button.h">
-      <Filter>Settings</Filter>
-    </ClInclude>
     <ClInclude Include="Snakes\State\NormalMove.h">
       <Filter>Snakes\State</Filter>
     </ClInclude>
@@ -280,6 +277,9 @@
     </ClInclude>
     <ClInclude Include="Levels\ThirdLevel.h">
       <Filter>Levels</Filter>
+    </ClInclude>
+    <ClInclude Include="Settings\Buttons.h">
+      <Filter>Settings</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
