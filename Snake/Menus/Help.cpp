@@ -6,6 +6,7 @@ Help::Help(IDisplay<wchar_t>* display, int width) : MenuBase(display, width)
 	_length = -1;
 	_menu = nullptr;
 	_items = std::vector<ItemBase*>();
+
 	GenerateMenu();
 }
 
@@ -69,18 +70,5 @@ void Help::Show()
 
 void Help::Clear()
 {
-	int i = 0;
-	int x = _width / 4;
-	_display->SetColor();
-	for (; i < _items.size(); i++)
-	{
-		int len = _items[i]->Description().length() + 1;
-		std::wstring empty(len, L' ');
-		_display->ShowText(empty, x, 10 + i);
-	}
-	std::wstring str = L"press Esc to go back";
-	std::wstring empty(str.length(), L' ');
-	x = (_width - empty.length() + 1) / 2;
-	i++;
-	_display->ShowText(empty, x, 10 + i);
+	_display->ClearDisplay();
 }

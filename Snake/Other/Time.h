@@ -10,6 +10,7 @@ private:
 	int _hour;
 public:
 	Time();
+	Time(std::wstring time);
 	Time(int hour, int minute, int second, float millisecond);
 
 	float Millisecond() const;
@@ -26,5 +27,13 @@ public:
 	void SetTime(Time& value);
 	void SetTime(int hour, int minute, int second, float millisecond);
 	std::wstring ToString();
-};
 
+	friend bool operator== (const Time& t1, const Time& t2);
+	friend bool operator!= (const Time& t1, const Time& t2);
+
+	friend bool operator> (const Time& t1, const Time& t2);
+	friend bool operator< (const Time& t1, const Time& t2);
+
+	friend bool operator>= (const Time& t1, const Time& t2);
+	friend bool operator<= (const Time& t1, const Time& t2);
+};

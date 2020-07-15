@@ -21,9 +21,8 @@ void MainMenu::GenerateMenu()
 {
 	*_menu = L"Start";
 	*(_menu + 1) = L"Rating";
-	*(_menu + 2) = L"Snake Color";
-	*(_menu + 3) = L"Help";
-	*(_menu + 4) = L"Exit";
+	*(_menu + 2) = L"Help";
+	*(_menu + 3) = L"Exit";
 }
 
 void MainMenu::SelectMenuItem()
@@ -44,17 +43,13 @@ void MainMenu::SelectMenuItem()
 	}
 	else if (menuItem._Equal(L"Rating"))
 	{
-		//_selectedMenu = 
-	}
-	else if (menuItem._Equal(L"Snake Color"))
-	{
-		//_selectedMenu = 
+		RatingMenu menu = RatingMenu(_display, _width);
+		menu.Open();
 	}
 	else if (menuItem._Equal(L"Help"))
 	{
 		Help help = Help(_display, _width);
 		help.Open();
-		//_selectedMenu =
 	}
 	else if (menuItem._Equal(L"Exit"))
 		exit(0);

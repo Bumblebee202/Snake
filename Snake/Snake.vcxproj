@@ -19,6 +19,8 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Database\SQLite.cpp" />
+    <ClCompile Include="Database\SQLite\sqlite3.c" />
     <ClCompile Include="Game\BaseApp.cpp" />
     <ClCompile Include="Game\Game.cpp" />
     <ClCompile Include="Items\Amanita.cpp" />
@@ -35,7 +37,9 @@
     <ClCompile Include="Menus\MainMenu.cpp" />
     <ClCompile Include="Menus\MenuBase.cpp" />
     <ClCompile Include="Menus\Pause.cpp" />
+    <ClCompile Include="Menus\RatingMenu.cpp" />
     <ClCompile Include="Other\Random.cpp" />
+    <ClCompile Include="Other\Rating.cpp" />
     <ClCompile Include="Other\Time.cpp" />
     <ClCompile Include="Other\Timer.cpp" />
     <ClCompile Include="Settings\Button.cpp" />
@@ -46,6 +50,8 @@
     <ClCompile Include="Snakes\State\SpeedMove.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Database\SQLite.h" />
+    <ClInclude Include="Database\SQLite\sqlite3.h" />
     <ClInclude Include="Display\ConsoleDisplay.h" />
     <ClInclude Include="Display\IDisplay.h" />
     <ClInclude Include="Game\BaseApp.h" />
@@ -76,10 +82,13 @@
     <ClInclude Include="Menus\MainMenu.h" />
     <ClInclude Include="Menus\MenuBase.h" />
     <ClInclude Include="Menus\Pause.h" />
+    <ClInclude Include="Menus\RatingMenu.h" />
     <ClInclude Include="Other\Random.h" />
+    <ClInclude Include="Other\Rating.h" />
     <ClInclude Include="Other\ThreadSafeVector.h" />
     <ClInclude Include="Other\Time.h" />
     <ClInclude Include="Other\Timer.h" />
+    <ClInclude Include="resource.h" />
     <ClInclude Include="Settings\Button.h" />
     <ClInclude Include="Snakes\Snake.h" />
     <ClInclude Include="Snakes\State\MoveBase.h" />

@@ -2,15 +2,16 @@
 #include <cmath>
 #include <Windows.h>
 #include <thread>
+#include "BaseApp.h"
 #include "../Other/ThreadSafeVector.h"
 #include "../Other/Random.h"
-#include "BaseApp.h"
 #include "../Headers/Header.h"
 #include "../Headers/Menus.h"
 #include "../Headers/Levels.h"
 #include "../Headers/Snakes.h"
 #include "../Display/ConsoleDisplay.h"
 #include "../Headers/Creators.h"
+#include "../Database/SQLite.h"
 
 class Game : public BaseApp
 {
@@ -27,6 +28,7 @@ private:
 	IDisplay<wchar_t>* _display;
 	MenuBase* _menu;
 	ThreadSafeVector<ItemBase*> _items;
+	SQLite* _sqlite;
 
 	void SnakeMovement();
 	void ItemMaker();

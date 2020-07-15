@@ -43,6 +43,12 @@
     <Filter Include="Game">
       <UniqueIdentifier>{9f45ad53-6909-46fe-a4fd-bba266b71a9e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Database">
+      <UniqueIdentifier>{45b0ce6b-898a-4c49-9123-f560c879fa1b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Database\SQLite">
+      <UniqueIdentifier>{3d437a7b-890c-4a94-8378-d54f9498aebf}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -119,6 +125,18 @@
     </ClCompile>
     <ClCompile Include="Game\Game.cpp">
       <Filter>Game</Filter>
+    </ClCompile>
+    <ClCompile Include="Database\SQLite.cpp">
+      <Filter>Database</Filter>
+    </ClCompile>
+    <ClCompile Include="Database\SQLite\sqlite3.c">
+      <Filter>Database\SQLite</Filter>
+    </ClCompile>
+    <ClCompile Include="Other\Rating.cpp">
+      <Filter>Other</Filter>
+    </ClCompile>
+    <ClCompile Include="Menus\RatingMenu.cpp">
+      <Filter>Menus</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -241,6 +259,21 @@
     </ClInclude>
     <ClInclude Include="Game\Game.h">
       <Filter>Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Database\SQLite.h">
+      <Filter>Database</Filter>
+    </ClInclude>
+    <ClInclude Include="resource.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Database\SQLite\sqlite3.h">
+      <Filter>Database\SQLite</Filter>
+    </ClInclude>
+    <ClInclude Include="Other\Rating.h">
+      <Filter>Other</Filter>
+    </ClInclude>
+    <ClInclude Include="Menus\RatingMenu.h">
+      <Filter>Menus</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -34,6 +34,7 @@ public:
 	void ShowNumber(float value, int x = 0, int y = 0) override;
 	void ShowSymbol(wchar_t value, int x = 0, int y = 0) override;
 	std::wstring EnterText(int x = 0, int y = 0, int maxLen = 10) override;
+	void ClearDisplay() override;
 };
 
 template<typename T>
@@ -212,8 +213,10 @@ inline std::wstring ConsoleDisplay<T>::EnterText(int x, int y, int maxLen)
 	{
 		wchar_t symbol = _getwch();
 
-		if (_button->IsEnter(symbol))
+		if (_button->IsEnter(symbol) && str.length() > 0)
 			break;
+		else if (_button->IsEnter(symbol))
+			continue;
 
 		if (symbol == 224)
 		{
@@ -284,4 +287,10 @@ inline std::wstring ConsoleDisplay<T>::EnterText(int x, int y, int maxLen)
 
 	_mutex.unlock();
 	return str;
+}
+
+template<typename T>
+inline void ConsoleDisplay<T>::ClearDisplay()
+{
+	system("cls");
 }
