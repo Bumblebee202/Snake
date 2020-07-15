@@ -18,4 +18,5 @@ public:
 	virtual void ShowNumber(float value, int x = 0, int y = 0) = 0;
 	virtual void ShowSymbol(wchar_t value, int x = 0, int y = 0) = 0;
 	virtual std::wstring EnterText(int x = 0, int y = 0, int maxLen = 10) = 0;
+	virtual void ClearDisplay() = 0;
 };

@@ -1,10 +1,10 @@
 ﻿#include <iostream>
 #include <io.h>
 #include <fcntl.h>
+#include <string>
 #include "Menus/MenuBase.h"
 #include "Menus/MainMenu.h"
-#include "Display/IDisplay.h"
-#include "Display/ConsoleDisplay.h"
+#include "Database/SQLite.h"
 
 int main()
 {
@@ -16,15 +16,5 @@ int main()
 	MenuBase* menu = new MainMenu();
 	menu->Open();
 
-	/*IDisplay<wchar_t>* d = new ConsoleDisplay<wchar_t>();
-
-	auto t = d->EnterText();
-
-	std::wcout << std::endl << t;*/
-
-	/*for (size_t i = 9000; i < 12000; i++)
-	{
-		std::wcout << L"#" << i << L": " << wchar_t(i) << std::endl;
-	}*/
 	return 0;
 }

@@ -6,6 +6,7 @@ Pause::Pause(BaseApp* game, IDisplay<wchar_t>* display, int rowWidth) : MenuBase
 	_selectedMenuItem = 0;
 	_length = 2;
 	_menu = new std::wstring[2];
+
 	GenerateMenu();
 }
 

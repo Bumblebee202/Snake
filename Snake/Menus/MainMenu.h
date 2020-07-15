@@ -1,6 +1,7 @@
 #pragma once
 #include "MenuBase.h"
 #include "Help.h"
+#include "RatingMenu.h"
 #include "../Game/Game.h"
 
 class MainMenu : public MenuBase

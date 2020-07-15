@@ -9,6 +9,23 @@ Time::Time()
 	_hour = 0;
 }
 
+Time::Time(std::wstring time)
+{
+	_millisecond = 0.0f;
+
+	int index = -1;
+
+	index = time.find(L':');
+	_hour = std::stoi(time.substr(0, index));
+	time.erase(0, index + 1);
+
+	index = time.find(L':');
+	_minute = std::stoi(time.substr(0, index));
+	time.erase(0, index + 1);
+
+	_second = std::stoi(time.substr(0, index));
+}
+
 Time::Time(int hour, int minute, int second, float millisecond)
 {
 	_millisecond = millisecond;
@@ -109,11 +126,82 @@ std::wstring Time::ToString()
 	std::wstring minute = std::to_wstring(_minute);
 	std::wstring second = std::to_wstring(_second);
 	std::wstring time = std::wstring();
-	if (_hour > 0)
-	{
-		std::wstring hour = std::to_wstring(_hour);
-		time.append(hour).append(L":");
-	}
-	time.append(minute).append(L":").append(second);
+	std::wstring hour = std::to_wstring(_hour);
+	time.append(hour).append(L":").append(minute).append(L":").append(second);
 	return time;
+}
+
+bool operator==(const Time& t1, const Time& t2)
+{
+	if (t1.Hour() == t2.Hour() && t1.Minute() == t2.Minute() &&
+		t1.Second() == t2.Second() && t1.Millisecond() == t2.Millisecond())
+	{
+		return true;
+	}
+	return false;
+}
+
+bool operator!=(const Time& t1, const Time& t2)
+{
+	return !(t1 == t2);
+}
+
+bool operator>(const Time& t1, const Time& t2)
+{
+	if (t1.Hour() > t2.Hour())
+		return true;
+	else if (t1.Hour() > t2.Hour() && t1.Minute() > t2.Minute())
+		return true;
+	else if (t1.Hour() > t2.Hour() && t1.Minute() > t2.Minute() &&
+		t1.Second() > t2.Second())
+		return true;
+	else if (t1.Hour() > t2.Hour() && t1.Minute() > t2.Minute() &&
+		t1.Second() > t2.Second() && t1.Millisecond() && t2.Millisecond())
+		return true;
+	return false;
+}
+
+bool operator<(const Time& t1, const Time& t2)
+{
+	if (t1.Hour() < t2.Hour())
+		return true;
+	else if (t1.Hour() < t2.Hour() && t1.Minute() < t2.Minute())
+		return true;
+	else if (t1.Hour() < t2.Hour() && t1.Minute() < t2.Minute() &&
+		t1.Second() < t2.Second())
+		return true;
+	else if (t1.Hour() < t2.Hour() && t1.Minute() < t2.Minute() &&
+		t1.Second() < t2.Second() && t1.Millisecond() && t2.Millisecond())
+		return true;
+	return false;
+}
+
+bool operator>=(const Time& t1, const Time& t2)
+{
+	if (t1.Hour() >= t2.Hour())
+		return true;
+	else if (t1.Hour() >= t2.Hour() && t1.Minute() >= t2.Minute())
+		return true;
+	else if (t1.Hour() >= t2.Hour() && t1.Minute() >= t2.Minute() &&
+		t1.Second() >= t2.Second())
+		return true;
+	else if (t1.Hour() >= t2.Hour() && t1.Minute() >= t2.Minute() &&
+		t1.Second() >= t2.Second() && t1.Millisecond() && t2.Millisecond())
+		return true;
+	return false;
+}
+
+bool operator<=(const Time& t1, const Time& t2)
+{
+	if (t1.Hour() <= t2.Hour())
+		return true;
+	else if (t1.Hour() <= t2.Hour() && t1.Minute() <= t2.Minute())
+		return true;
+	else if (t1.Hour() <= t2.Hour() && t1.Minute() <= t2.Minute() &&
+		t1.Second() <= t2.Second())
+		return true;
+	else if (t1.Hour() <= t2.Hour() && t1.Minute() <= t2.Minute() &&
+		t1.Second() <= t2.Second() && t1.Millisecond() && t2.Millisecond())
+		return true;
+	return false;
 }

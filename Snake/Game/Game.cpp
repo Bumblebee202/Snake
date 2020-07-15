@@ -15,6 +15,7 @@ Game::Game(IDisplay<wchar_t>* display) : BaseApp()
 	_display = display;
 	_menu = new Pause(this, display, _lvl->GetRow());
 	_button = Button::GetInstance();
+	_sqlite = SQLite::GetInstance();
 }
 
 Game::~Game()
@@ -173,7 +174,9 @@ void Game::Lose()
 	x = (_lvl->GetRow() - (str.length() + 10)) / 2;
 	y++;
 	_display->ShowText(str, x, y);
-	_display->EnterText(x + str.length(), y);
+
+	std::wstring userName = _display->EnterText(x + str.length(), y);
+
 
 	/*str = L"Press space to continue";
 	x = (_lvl->GetRow() - str.length()) / 2;
@@ -188,6 +191,13 @@ void Game::Lose()
 			sp = _getch();
 	} while (_button->IsSpace(sp));*/
 	_run = false;
+
+	Rating newRating = Rating();
+	newRating.SetName(userName);
+	newRating.SetScore(_totalScore);
+	newRating.SetTime(_totalTime);
+
+	_sqlite->AddNewRating(newRating);
 }
 
 void Game::ShowSnake()
