@@ -1,10 +1,10 @@
 #pragma once
 #include "LevelBase.h"
 
-class SecondLevel :	public LevelBase
+class ThirdLevel : public LevelBase
 {
 public:
-	SecondLevel();
+	ThirdLevel();
 	int virtual GetLevel() const override;
 	void virtual Loading() override;
 };

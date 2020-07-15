@@ -16,12 +16,12 @@
 class Game : public BaseApp
 {
 private:
+	std::atomic<bool> _newDirection;
     std::atomic<bool> _threadsRun;
 	std::atomic<bool> _pause;
 	std::atomic<bool> _exit;
 	int _totalScore;
 	Time _time;
-	Time _totalTime;
 	Random _random;
 	Snake* _snake;
 	LevelBase* _lvl;

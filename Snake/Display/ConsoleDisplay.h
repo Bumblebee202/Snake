@@ -217,6 +217,8 @@ inline std::wstring ConsoleDisplay<T>::EnterText(int x, int y, int maxLen)
 			break;
 		else if (_button->IsEnter(symbol))
 			continue;
+		else if (_button->IsEsc(symbol))
+			continue;
 
 		if (symbol == 224)
 		{
@@ -242,7 +244,7 @@ inline std::wstring ConsoleDisplay<T>::EnterText(int x, int y, int maxLen)
 				}
 				continue;
 			}
-			else if (_button->IsEsc(symbol) || _button->IsUp(symbol) || _button->IsDown(symbol))
+			else if (_button->IsUp(symbol) || _button->IsDown(symbol))
 				continue;
 		}
 

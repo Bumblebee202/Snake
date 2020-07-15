@@ -23,7 +23,7 @@ Time::Time(std::wstring time)
 	_minute = std::stoi(time.substr(0, index));
 	time.erase(0, index + 1);
 
-	_second = std::stoi(time.substr(0, index));
+	_second = std::stoi(time.substr(0, 2));
 }
 
 Time::Time(int hour, int minute, int second, float millisecond)

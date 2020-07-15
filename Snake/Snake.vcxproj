@@ -32,6 +32,7 @@
     <ClCompile Include="Levels\FirstLevel.cpp" />
     <ClCompile Include="Levels\LevelBase.cpp" />
     <ClCompile Include="Levels\SecondLevel.cpp" />
+    <ClCompile Include="Levels\ThirdLevel.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Menus\Help.cpp" />
     <ClCompile Include="Menus\MainMenu.cpp" />
@@ -78,6 +79,7 @@
     <ClInclude Include="Levels\FirstLevel.h" />
     <ClInclude Include="Levels\LevelBase.h" />
     <ClInclude Include="Levels\SecondLevel.h" />
+    <ClInclude Include="Levels\ThirdLevel.h" />
     <ClInclude Include="Menus\Help.h" />
     <ClInclude Include="Menus\MainMenu.h" />
     <ClInclude Include="Menus\MenuBase.h" />

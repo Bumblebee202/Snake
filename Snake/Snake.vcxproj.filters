@@ -138,6 +138,9 @@
     <ClCompile Include="Menus\RatingMenu.cpp">
       <Filter>Menus</Filter>
     </ClCompile>
+    <ClCompile Include="Levels\ThirdLevel.cpp">
+      <Filter>Levels</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Snakes\Snake.h">
@@ -274,6 +277,9 @@
     </ClInclude>
     <ClInclude Include="Menus\RatingMenu.h">
       <Filter>Menus</Filter>
+    </ClInclude>
+    <ClInclude Include="Levels\ThirdLevel.h">
+      <Filter>Levels</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

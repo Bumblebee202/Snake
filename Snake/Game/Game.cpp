@@ -3,12 +3,12 @@
 Game::Game(IDisplay<wchar_t>* display) : BaseApp()
 {
 	_lvl = new FirstLevel();
+	_newDirection = true;
 	_threadsRun = true;
 	_pause = false;
 	_exit = false;
 	_run = true;
 	_time = Time();
-	_totalTime = Time();
 	_random = Random();
 	_totalScore = 0;
 	_snake = nullptr;
@@ -47,24 +47,29 @@ void Game::KeyPressed(int btnCode)
 	if (btnCode == 224)
 		btnCode = _getch();
 
-	Direction dir = _snake->GetDirection();
-	if (_button->IsLeft(btnCode))
-		dir = _snake->GetDirection() != Direction::Right ? Direction::Left : dir;
-	else if (_button->IsRight(btnCode))
-		dir = _snake->GetDirection() != Direction::Left ? Direction::Right : dir;
-	else if (_button->IsUp(btnCode))
-		dir = _snake->GetDirection() != Direction::Down ? Direction::Up : dir;
-	else if (_button->IsDown(btnCode))
-		dir = _snake->GetDirection() != Direction::Up ? Direction::Down : dir;
-	else if (_button->IsEsc(btnCode))
+	if (_newDirection == true)
 	{
-		_pause = true;
-		_menu->Open();
-		ShowSnake();
-		_pause = false;
-	}
+		_newDirection = false;
 
-	_snake->SetDirection(dir);
+		Direction dir = _snake->GetDirection();
+		if (_button->IsLeft(btnCode))
+			dir = _snake->GetDirection() != Direction::Right ? Direction::Left : dir;
+		else if (_button->IsRight(btnCode))
+			dir = _snake->GetDirection() != Direction::Left ? Direction::Right : dir;
+		else if (_button->IsUp(btnCode))
+			dir = _snake->GetDirection() != Direction::Down ? Direction::Up : dir;
+		else if (_button->IsDown(btnCode))
+			dir = _snake->GetDirection() != Direction::Up ? Direction::Down : dir;
+		else if (_button->IsEsc(btnCode))
+		{
+			_pause = true;
+			_menu->Open();
+			ShowSnake();
+			_pause = false;
+		}
+
+		_snake->SetDirection(dir);
+	}
 }
 
 void Game::Start()
@@ -128,9 +133,6 @@ void Game::Start()
 		delete _snake;
 		_snake = nullptr;
 
-		_totalTime.Add(_time);
-		_time.SetTime(0, 0, 0, 0.0f);
-
 	} while (!_exit);
 }
 
@@ -149,17 +151,22 @@ void Game::NewLvl()
 		_threadsRun = false;
 		delete _lvl;
 		_lvl = new SecondLevel();
+		return;
 	}
-}
+	else if (_lvl->GetLevel() == 2)
+	{
+		_run = false;
+		_threadsRun = false;
+		delete _lvl;
+		_lvl = new ThirdLevel();
+		return;
+	}
 
-void Game::Lose()
-{
 	_exit = true;
 
 	_threadsRun = false;
-	_totalTime.Add(_time);
 
-	std::wstring str = L"You lose";
+	std::wstring str = L"You win";
 	int x = (_lvl->GetRow() - str.length()) / 2;
 	int y = _lvl->GetCol() / 3;
 	_display->ShowText(str, x, y);
@@ -167,7 +174,7 @@ void Game::Lose()
 	x = (_lvl->GetRow() - str.length()) / 2;
 	y++;
 	_display->ShowText(str, x, y);
-	str = L"Total time: " + _totalTime.ToString();
+	str = L"Total time: " + _time.ToString();
 	y++;
 	_display->ShowText(str, x, y);
 	str = L"Enter your name: ";
@@ -177,25 +184,46 @@ void Game::Lose()
 
 	std::wstring userName = _display->EnterText(x + str.length(), y);
 
-
-	/*str = L"Press space to continue";
-	x = (_lvl->GetRow() - str.length()) / 2;
-	y++;
-	_display->ShowText(str, x, y);*/
-
-	/*int sp;
-	do
-	{
-		sp = _getch();
-		if (sp == 224)
-			sp = _getch();
-	} while (_button->IsSpace(sp));*/
 	_run = false;
 
 	Rating newRating = Rating();
 	newRating.SetName(userName);
 	newRating.SetScore(_totalScore);
-	newRating.SetTime(_totalTime);
+	newRating.SetTime(_time);
+
+	_sqlite->AddNewRating(newRating);
+}
+
+void Game::Lose()
+{
+	_exit = true;
+
+	_threadsRun = false;
+
+	std::wstring str = L"You lose";
+	int x = (_lvl->GetRow() - str.length()) / 2;
+	int y = _lvl->GetCol() / 3;
+	_display->ShowText(str, x, y);
+	str = L"Total score: " + std::to_wstring(_totalScore);
+	x = (_lvl->GetRow() - str.length()) / 2;
+	y++;
+	_display->ShowText(str, x, y);
+	str = L"Total time: " + _time.ToString();
+	y++;
+	_display->ShowText(str, x, y);
+	str = L"Enter your name: ";
+	x = (_lvl->GetRow() - (str.length() + 10)) / 2;
+	y++;
+	_display->ShowText(str, x, y);
+
+	std::wstring userName = _display->EnterText(x + str.length(), y);
+
+	_run = false;
+
+	Rating newRating = Rating();
+	newRating.SetName(userName);
+	newRating.SetScore(_totalScore);
+	newRating.SetTime(_time);
 
 	_sqlite->AddNewRating(newRating);
 }
@@ -260,6 +288,8 @@ void Game::SnakeMovement()
 	{
 		if (!_pause)
 		{
+			_newDirection = true;
+
 			head = _snake->GetHead();
 			tail = _snake->GetTail();
 
@@ -275,6 +305,17 @@ void Game::SnakeMovement()
 					return;
 				}
 
+				SnakePart* part = head->Next;
+				while (part != nullptr)
+				{
+					if (head->X == part->X && head->Y == part->Y)
+					{
+						Lose();
+						return;
+					}
+					part = part->Next;
+				}
+
 				for (int i = 0; i < _items.Count(); i++)
 				{
 					if (_items[i]->GetX() == head->X && _items[i]->GetY() == head->Y)
@@ -287,7 +328,7 @@ void Game::SnakeMovement()
 							tail->X = oldX;
 							tail->Y = oldY;
 						}
-						
+
 						score += item->GetScore();
 						_totalScore += item->GetScore();
 
@@ -312,7 +353,7 @@ void Game::SnakeMovement()
 			Sleep(sleep);
 		}
 	}
-	
+
 }
 
 void Game::ItemMaker()
